@@ -5,8 +5,9 @@
 
 package org.cvut.vrchlpet.MEditor.nodes;
 
+import org.cvut.vrchlpet.MController.IMasterController;
 import org.cvut.vrchlpet.MCore.core.Element;
-import org.cvut.vrchlpet.MCore.core.Model;
+import org.cvut.vrchlpet.MCore.model.IMModel;
 import org.openide.nodes.Children;
 import org.openide.nodes.Node;
 
@@ -15,29 +16,33 @@ import org.openide.nodes.Node;
  * @author Vrchlavsky Petr
  * @version 1.0
  */
-public class ElementChildren extends Children.Keys{
+public class ElementChildren extends Children.Keys<Element>{
 
-    private Model model;
+    private IMModel model;
+    private IMasterController controller;
 
-    public ElementChildren(Model obj) {
+    public ElementChildren(IMModel obj, IMasterController controller) {
         this.model = obj;
+        this.controller = controller;
     }
 
+
     @Override
-    protected Node[] createNodes(Object o) {
+    protected Node[] createNodes(Element o) {
         Element obj = (Element) o;
-        return new Node[] { new ElementNode(obj, this) };
+        ElementNode elnode = new ElementNode(obj, this, this.controller);
+        return new Node[] { elnode };
     }
 
     @Override
     public void addNotify() {
-        setKeys(getModel().getElements());
+        setKeys(this.model.getModel().getElements());
     }
 
     /**
      * @return the model
      */
-    public Model getModel() {
+    public IMModel getModel() {
         return model;
     }
 }

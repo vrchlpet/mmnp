@@ -13,7 +13,7 @@ package org.cvut.vrchlpet.MCore.visualization;
 public class ReferenceArrow {
 
     public static final boolean DEFAULT_REVERSED = false;
-    public static final ArrowShape DEFAULT_ARROW_SHAPE = ArrowShape.none;
+    public static final ArrowShape DEFAULT_ARROW_SHAPE = ArrowShape.NONE;
 
     private ArrowShape arrowShape;
     private boolean reversed;

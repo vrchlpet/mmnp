@@ -24,7 +24,6 @@ public class Author extends Notifyer{
         this.firstName = DEFAULT_FIRST_NAME;
         this.surname = DEFAULT_SURNAME;
         info = new MList<String>();
-        info.addPropertyChangeListener(this);
     }
 
     /**

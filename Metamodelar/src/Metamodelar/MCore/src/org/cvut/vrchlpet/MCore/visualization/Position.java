@@ -16,7 +16,7 @@ public class Position {
     public static final int DEFAULT_X = 0;
     public static final int DEFAULT_Y = 0;
     public static final boolean DEFAULT_ABSOLUTE = false;
-    public static final Layout DEFAULT_LAYOUT = Layout.flow;
+    public static final Layout DEFAULT_LAYOUT = Layout.center;
 
     private int x;
     private int y;

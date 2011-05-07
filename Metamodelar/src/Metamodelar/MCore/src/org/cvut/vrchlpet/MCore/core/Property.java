@@ -12,15 +12,15 @@ import org.cvut.vrchlpet.MCore.datacore.MData;
  * @author Vrchlavsky Petr
  * @version 1.0
  */
-public class Property extends StructuralFuture{
+public class Property extends StructuralFeature{
 
     private MData mData;
-    private Object defaultValue;
+    private Object value;
 
 
     public Property() {
         this.mData = null;
-        this.defaultValue = null;
+        this.value = null;
     }
 
     public Property(MData mData) {
@@ -48,20 +48,20 @@ public class Property extends StructuralFuture{
     /**
      * @return the defaultValue
      */
-    public Object getDefaultVaue() {
-        return defaultValue;
+    public Object getValue() {
+        return value;
     }
 
     /**
      * @param defaultValue the defaultValue to set
      */
-    public void setDefaultValue(Object defaultValue) {
-        if ( !this.mData.getClass().isInstance(defaultValue))
+    public void setValue(Object defaultValue) {
+        if ( !this.mData.getDataClass().isInstance(defaultValue))
             throw new IllegalArgumentException(defaultValue + ": cannot be "
                     + "assigned to this property. Incompatible types!");
-        Object old = this.defaultValue;
-        this.defaultValue = defaultValue;
-        firePropertyChange("defaultValue", old, this.defaultValue);
+        Object old = this.value;
+        this.value = defaultValue;
+        firePropertyChange("defaultValue", old, this.value);
     }
 
 

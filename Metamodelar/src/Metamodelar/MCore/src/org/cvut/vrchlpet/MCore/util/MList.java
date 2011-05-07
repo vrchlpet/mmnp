@@ -50,7 +50,7 @@ public class MList<T> extends Notifyer implements Collection<T> {
     public boolean add(T e) {
         boolean b = data.add(e);
         if ( b) {
-            firePropertyChange("data", data, e);
+            firePropertyChange("addData", data, e);
         }
 
         return b;
@@ -60,7 +60,7 @@ public class MList<T> extends Notifyer implements Collection<T> {
     public boolean remove(Object o) {
         boolean b = data.remove(o);
         if ( b) {
-            firePropertyChange("data", o, data);
+            firePropertyChange("removeData", o, data);
         }
 
         return b;
@@ -75,7 +75,7 @@ public class MList<T> extends Notifyer implements Collection<T> {
     public boolean addAll(Collection<? extends T> c) {
         boolean b = data.addAll(c);
         if ( b) {
-            firePropertyChange("data", data, c);
+            firePropertyChange("addAllData", data, c);
         }
         
         return b;
@@ -85,7 +85,7 @@ public class MList<T> extends Notifyer implements Collection<T> {
     public boolean removeAll(Collection<?> c) {
         boolean b = data.removeAll(c);
         if ( b) {
-            firePropertyChange("data", c, data);
+            firePropertyChange("removeAllData", c, data);
         }
 
         return b;
@@ -95,7 +95,7 @@ public class MList<T> extends Notifyer implements Collection<T> {
     public boolean retainAll(Collection<?> c) {
         boolean b = data.retainAll(c);
         if ( b) {
-            firePropertyChange("data", c, data);
+            firePropertyChange("retainAllData", c, data);
         }
 
         return b;
@@ -104,7 +104,7 @@ public class MList<T> extends Notifyer implements Collection<T> {
     @Override
     public void clear() {
         data.clear();
-        firePropertyChange("data", data, data);
+        firePropertyChange("clearData", data, data);
     }
 
     public Collection<T> getData() {

@@ -2,11 +2,11 @@
 
 package org.cvut.vrchlpet.MCore.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import org.cvut.vrchlpet.MCore.core.Model;
-import org.cvut.vrchlpet.MCore.util.IModelAbstractFactory;
-import org.cvut.vrchlpet.MCore.util.IModelFactory;
-import org.cvut.vrchlpet.MCore.util.MList;
+import org.cvut.vrchlpet.MCore.util.IModelBuilder;
+import org.cvut.vrchlpet.MCore.util.IModelInfo;
 import org.cvut.vrchlpet.MCore.util.Notifyer;
 
 /**
@@ -14,35 +14,44 @@ import org.cvut.vrchlpet.MCore.util.Notifyer;
  * @author Vrchlavsky Petr
  * @version 1.0
  */
-public class MModel extends Notifyer{
+public class MModel extends Notifyer implements IMModel{
 
 
-    private IModelFactory factory;
-    private MList<Author> authors;
+    private IModelBuilder builder;
+    private ArrayList<Author> authors;
     private Date theCreationDate; // datum vytvoreni;
+    private IModelInfo info;
 
-    public MModel(IModelFactory factory) {
-        this.factory = factory;
-        this.authors = new MList<Author>();
-        this.authors.addPropertyChangeListener(this);
+    
+    public MModel() {}
+    
+    public MModel(IModelBuilder builder, IModelInfo info) {
+        this.builder = builder;
+        this.builder.setMModel(this);
+        this.authors = new ArrayList<Author>();
         this.theCreationDate = new Date();
+        this.info = info;
+        info.setMModel(this);
     }
 
+    @Override
     public Model getModel() {
-        return this.factory.getBuilder().getModel();
+        return this.builder.getModel();
     }
 
 
     /**
      * @return the authors
      */
-    public MList<Author> getAuthors() {
+    @Override
+    public ArrayList<Author> getAuthors() {
         return this.authors;
     }
 
     /**
      * @return the theCreationDate
      */
+    @Override
     public Date getTheCreationDate() {
         return this.theCreationDate;
     }
@@ -50,7 +59,21 @@ public class MModel extends Notifyer{
     /**
      * @return the factory
      */
-    public IModelFactory getFactory() {
-        return this.factory;
+    @Override
+    public IModelBuilder getBuilder() {
+        return this.builder;
+    }
+
+    @Override
+    public IModelInfo getModelInfo() {
+        return this.info;
+    }
+
+    @Override
+    public void setModelInfo(IModelInfo info) {
+        if ( info != null)
+            this.info.setMModel(null);
+        
+        this.info = info;
     }
 }

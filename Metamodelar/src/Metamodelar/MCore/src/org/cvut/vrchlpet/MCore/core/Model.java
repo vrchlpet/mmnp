@@ -2,8 +2,8 @@
 package org.cvut.vrchlpet.MCore.core;
 
 
+import java.util.ArrayList;
 import java.util.Date;
-import org.cvut.vrchlpet.MCore.util.MList;
 
 /**
  *
@@ -12,25 +12,25 @@ import org.cvut.vrchlpet.MCore.util.MList;
  */
 public class Model extends MetaObject{
 
+    public static final String ELEMENT_REMOVED = "el_rm";
+    public static final String ELEMENT_ADDED = "el_add";
+    public static final String RELATION_REMOVED = "rel_rm";
+    public static final String RELATION_ADDED = "rel_add";
+
+
+
     protected Date dateOfCreation;
     protected String version;
-    private MList<Relation> relations;
-    private MList<Element> elements;
+    private ArrayList<Relation> relations;
+    private ArrayList<Element> elements;
 
     public static final String DEFAULT_VERSION = "1.0";
 
     public Model() {
         this.dateOfCreation = new Date();
-        this.relations = new MList<Relation>();
-        this.elements = new MList<Element>();
-        relations.addPropertyChangeListener(this);
-        elements.addPropertyChangeListener(this);
+        this.relations = new ArrayList<Relation>();
+        this.elements = new ArrayList<Element>();
         version = DEFAULT_VERSION;
-    }
-
-    public Model(String version) {
-        this();
-        this.version = version;
     }
 
 
@@ -63,17 +63,51 @@ public class Model extends MetaObject{
         this.version = version;
     }
 
+    public Element createElement() {
+        Element el = new Element(this);
+        if (this.elements.add(el)) {
+            firePropertyChange(ELEMENT_ADDED, elements, el);
+            return el;
+        }
+
+        return null;
+    }
+    
+    public void removeElement(Element el) {
+        if (this.elements.remove(el)) {
+            el.setModel(null);
+            firePropertyChange(ELEMENT_REMOVED, el, elements);
+        }
+    }
+
+
+    public Relation createRelation() {
+        Relation rel = new Relation();
+        if (this.relations.add(rel)) {
+            firePropertyChange(RELATION_ADDED, relations, rel);
+            return rel;
+        }
+        return null;
+    }
+
+    public void removeRelation(Relation rel) {
+        if (this.relations.remove(rel))
+            firePropertyChange(RELATION_REMOVED, rel, relations);
+    }
+
+
+
     /**
      * @return the relations
      */
-    public MList<Relation> getRelations() {
+    public ArrayList<Relation> getRelations() {
         return relations;
     }
 
     /**
      * @return the elements
      */
-    public MList<Element> getElements() {
+    public ArrayList<Element> getElements() {
         return elements;
     }
 

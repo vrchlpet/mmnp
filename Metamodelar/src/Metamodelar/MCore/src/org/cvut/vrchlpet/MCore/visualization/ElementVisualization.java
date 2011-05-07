@@ -14,7 +14,7 @@ public class ElementVisualization implements IVisualization {
     public static final String DEFAULT_GROUP_NAME = "element visual manager groupname";
 
     private String groupName;
-    private Border border;
+    private MBorder border;
     private BackgroundColor backgroundColor;
     private BackgroundImage backgroundImage;
     private ArrayList<ElementLabel> labels;
@@ -52,14 +52,14 @@ public class ElementVisualization implements IVisualization {
     /**
      * @return the border
      */
-    public Border getBorder() {
+    public MBorder getBorder() {
         return border;
     }
 
     /**
      * @param border the border to set
      */
-    public void setBorder(Border border) {
+    public void setBorder(MBorder border) {
         this.border = border;
     }
 

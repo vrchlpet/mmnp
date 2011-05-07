@@ -15,7 +15,7 @@ public class ElementLabel extends Label{
     public ElementLabel() {
         this.position = new Position();
         this.position.setAbsolute(false);
-        this.position.setLayout(Layout.flow);
+        this.position.setLayout(Layout.center);
     }
 
 

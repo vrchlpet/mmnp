@@ -7,10 +7,11 @@ package org.cvut.vrchlpet.MCore.visualization;
  * @version 1.0
  */
 public enum ArrowShape {
-    none,
-    triangle,
-    simple,
-    fillTriangle,
-    circle,
-    diamond;
+    NONE,
+    CYRCLE,
+    SIMPLE,
+    TRIANGLE,
+    FILLTRIANGLE,
+    DIAMOND,
+    FILLDIAMOND;
 }

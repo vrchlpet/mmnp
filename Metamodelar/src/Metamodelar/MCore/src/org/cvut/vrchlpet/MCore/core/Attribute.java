@@ -3,58 +3,70 @@
 package org.cvut.vrchlpet.MCore.core;
 
 
-import org.cvut.vrchlpet.MCore.util.MList;
+import java.util.ArrayList;
+import org.cvut.vrchlpet.MCore.datacore.MData;
 
 /**
  *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
-public class Attribute extends StructuralFuture{
+public class Attribute extends StructuralFeature{
 
-    public static final String DEFAULT_NAME = "attribute Name";
+    
+    public static final String PROPERTY_REMOVED = "prop_rm";
+    public static final String PROPERTY_ADDED = "prop_add";
 
-    private MList<Property> properties;
-    private String name;
+    private ArrayList<Property> properties;
+    private Element element;
 
 
-    public Attribute() {
-        this.properties = new MList<Property>();
-        properties.addPropertyChangeListener(this);
-        this.name = DEFAULT_NAME;
+    public Attribute() {}
+    
+    public Attribute(Element el) {
+        this.properties = new ArrayList<Property>();
+        this.element = el;
     }
 
 
-    
-    
-    public MList<Property> getProperties() {
+
+    public boolean removeProperty(Property p) {
+        boolean b = false;
+        if ( properties.remove(p)) {
+            b = true;
+            Property old = p;
+            p.removePropertyChangeListener(this);
+            firePropertyChange(PROPERTY_REMOVED, old, this.properties);
+        }
+
+        return b;
+    }
+
+    public Property createProperty(MData data, String name) {
+        Property property = new Property(data);
+        property.setName(name);
+        property.addPropertyChangeListener(this);
+        properties.add(property);
+        firePropertyChange(PROPERTY_ADDED, this.properties, property);
+        return property;
+    }
+
+    public ArrayList<Property> getProperties() {
         return this.properties;
-    }
-
-    /**
-     * @return the specific
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param specific the specific to set
-     */
-    public void setName(String name) {
-        String old = this.name;
-        this.name = name;
-        firePropertyChange("name", old, this.name);
     }
 
 
     @Override
     public String toString() {
-        String s = "";
-
-        
-
+        String s = getName() + ", owner: " + element.getNameSpace();
         return s;
+    }
+
+    /**
+     * @return the element
+     */
+    public Element getElement() {
+        return element;
     }
 
 }
