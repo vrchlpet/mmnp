@@ -20,9 +20,11 @@ public class ElementUI extends CommonMetaObjectUI{
     private ElementVisualization visualization;
     private Element element;
     
-
+    public ElementUI() {}
+    
     public ElementUI(Element el) {
         installUI(el);
+        this.visualization = new ElementVisualization();
     }
 
 
@@ -58,7 +60,7 @@ public class ElementUI extends CommonMetaObjectUI{
         if ( obj instanceof Element)
             if ( obj.getUi() == this) {
                 obj.setUi(null);
-                this.setElement(null);
+                this.element = null;
             }
     }
 

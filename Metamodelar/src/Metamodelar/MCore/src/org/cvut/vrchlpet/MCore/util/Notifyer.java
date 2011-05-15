@@ -34,11 +34,16 @@ public class Notifyer implements IPropertyChangeObservable, PropertyChangeListen
     @Override
     public void addPropertyChangeListener(PropertyChangeListener pcl) {
         this.listenerList.add(PropertyChangeListener.class, pcl);
+        count++;
     }
+
+    public static int count = 0;
 
     @Override
     public void removePropertyChangeListener(PropertyChangeListener pcl) {
+        count --;
         this.listenerList.remove(PropertyChangeListener.class, pcl);
+        //Info.showMsgDialog("listeners count: " + count); // debugging purpose
     }
 
     protected void firePropertyChange(String parameterName, Object oldValue, Object newValue) {

@@ -5,9 +5,6 @@
 
 package org.cvut.vrchlpet.MCore.visualization.ui;
 
-import org.cvut.vrchlpet.MCore.core.Element;
-import org.cvut.vrchlpet.MCore.core.Reference;
-
 /**
  *
  * @author Vrchlavsky Petr
@@ -15,5 +12,5 @@ import org.cvut.vrchlpet.MCore.core.Reference;
  */
 public interface IPainter {
     public Object paint(ElementUI el);
-    public Object paint(Reference ref);
+    public Object paint(RelationUI rel);
 }

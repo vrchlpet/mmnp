@@ -3,20 +3,19 @@
 package org.cvut.vrchlpet.MCore.core;
 
 
-import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.event.EventListenerList;
 import org.cvut.vrchlpet.MCore.util.Notifyer;
 import org.cvut.vrchlpet.MCore.visualization.ui.CommonMetaObjectUI;
-import org.cvut.vrchlpet.MCore.visualization.ui.IMetaObjectUI;
 
 /**
  *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
-public class MetaObject extends Notifyer{
+public abstract class MetaObject extends Notifyer{
+
+    public static final String NAMESPACE_CHANGED = "ns_ch";
+    public static final String DESCRIPTION_CHANGED = "des_ch";
+
 
     protected String nameSpace;
     protected String description;
@@ -52,7 +51,7 @@ public class MetaObject extends Notifyer{
     public void setNameSpace(String nameSpace) {
         String old = this.nameSpace;
         this.nameSpace = nameSpace;
-        firePropertyChange("nameSpace", old, this.nameSpace);
+        firePropertyChange(NAMESPACE_CHANGED, old, this.nameSpace);
     }
 
     /**
@@ -68,7 +67,7 @@ public class MetaObject extends Notifyer{
     public void setDescription(String description) {
         String old = this.description;
         this.description = description;
-        firePropertyChange("description", old, this.description);
+        firePropertyChange(DESCRIPTION_CHANGED, old, this.description);
     }
 
     /**

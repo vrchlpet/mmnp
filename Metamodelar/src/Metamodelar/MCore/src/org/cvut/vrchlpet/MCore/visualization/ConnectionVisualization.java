@@ -13,20 +13,21 @@ public class ConnectionVisualization implements IVisualization {
 
     public static final LineStyle DEFAULT_LINE_STYLE = LineStyle.simple;
     public static final String DEFAULT_GROUP_NAME = "connection visual manager groupname";
+    public static final ArrowShape DEFAULT__ARROW_SHAPE = ArrowShape.NONE;
 
     private String groupName;
     private ArrayList<ConnectionLabel> labels;
     private LineStyle lineStyle;
 
-    private ReferenceArrow referenceSourceArrow;
-    private ReferenceArrow referenceTargetArrow;
+    private ArrowShape referenceSourceArrow;
+    private ArrowShape referenceTargetArrow;
 
     public ConnectionVisualization() {
         this.groupName = DEFAULT_GROUP_NAME;
         this.lineStyle = DEFAULT_LINE_STYLE;
         this.labels = new ArrayList<ConnectionLabel>();
-        this.referenceSourceArrow = null;
-        this.referenceTargetArrow = null;
+        this.referenceSourceArrow = DEFAULT__ARROW_SHAPE;
+        this.referenceTargetArrow = DEFAULT__ARROW_SHAPE;
     }
 
     public ConnectionVisualization(String name) {
@@ -93,28 +94,28 @@ public class ConnectionVisualization implements IVisualization {
     /**
      * @return the referenceSourceArrow
      */
-    public ReferenceArrow getReferenceSourceArrow() {
+    public ArrowShape getReferenceSourceArrow() {
         return referenceSourceArrow;
     }
 
     /**
      * @param referenceSourceArrow the referenceSourceArrow to set
      */
-    public void setReferenceSourceArrow(ReferenceArrow referenceSourceArrow) {
+    public void setReferenceSourceArrow(ArrowShape referenceSourceArrow) {
         this.referenceSourceArrow = referenceSourceArrow;
     }
 
     /**
      * @return the referenceTargetArrow
      */
-    public ReferenceArrow getReferenceTargetArrow() {
+    public ArrowShape getReferenceTargetArrow() {
         return referenceTargetArrow;
     }
 
     /**
      * @param referenceTargetArrow the referenceTargetArrow to set
      */
-    public void setReferenceTargetArrow(ReferenceArrow referenceTargetArrow) {
+    public void setReferenceTargetArrow(ArrowShape referenceTargetArrow) {
         this.referenceTargetArrow = referenceTargetArrow;
     }
 }

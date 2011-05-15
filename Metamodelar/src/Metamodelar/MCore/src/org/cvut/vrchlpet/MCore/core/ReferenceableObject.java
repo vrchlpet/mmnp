@@ -7,7 +7,6 @@ package org.cvut.vrchlpet.MCore.core;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.cvut.vrchlpet.MCore.util.MList;
 
 /**
  *
@@ -16,34 +15,34 @@ import org.cvut.vrchlpet.MCore.util.MList;
  */
 public class ReferenceableObject extends MetaObject{
 
+    public static final String REFERENCE_REMOVED  = "ref_rm";
+    public static final String REFERECE_ADDED = "ref_add";
+
     private String id;
-    private MList<Reference> references;
+    private ArrayList<Reference> references;
+
 
     public ReferenceableObject(String id) {
         this.id = id;
-        this.references = new MList<Reference>();
-        references.addPropertyChangeListener(this);
+        this.references = new ArrayList<Reference>();
     }
 
-
-    public boolean isContainment() {
-        for ( Reference ref : references) {
-            if ( ref.isContainment() )
-                return true;
-        }
-
-
-        return false;
-    }
-
-    public Reference createReference(Relation relation) {
+    public Reference createReference(Relation relation, ReferenceableObject opposite) {
         Reference ref = new Reference(relation);
+        ref.setReferenceType(opposite);
         ref.setOwner(this);
         references.add(ref);
+        firePropertyChange(REFERECE_ADDED, references, ref);
         return ref;
 
     }
 
+    public void removeReference(Reference ref) {
+        if ( references.remove(ref))
+            firePropertyChange(REFERENCE_REMOVED, ref, references);
+    }
+
+/*
     // vrati true, pokud je parameter kontainerem pro aktualni Object, a to
     // primo i neprimo
     public boolean isContainer(ReferenceableObject ro) {
@@ -59,9 +58,9 @@ public class ReferenceableObject extends MetaObject{
         
 
         return false;
-    }
+    }*/
 
-    public MList<Reference> getReferences() {
+    public ArrayList<Reference> getReferences() {
         return this.references;
     }
 

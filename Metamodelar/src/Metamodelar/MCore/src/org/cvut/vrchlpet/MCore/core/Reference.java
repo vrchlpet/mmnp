@@ -2,7 +2,6 @@
 
 package org.cvut.vrchlpet.MCore.core;
 
-import javax.swing.JButton;
 import org.cvut.vrchlpet.MCore.util.Notifyer;
 
 /**
@@ -10,28 +9,40 @@ import org.cvut.vrchlpet.MCore.util.Notifyer;
  * @author Vrchlavsky Petr
  * @version 1.0
  */
-public class Reference extends MetaObject{
+public class Reference extends Notifyer{
 
 
     public static final int DEFAULT_LOWER_BOUND = 0;
     public static final int DEFAULT_UPPER_BOUND = -1;
-    public static final boolean DEFAULT_CONTAINER = false;
-    public static final boolean DEFAULT_CONTAINMENT = false;
+    
     public static final boolean DEFAULT_VISIBLE = true;
     public static final boolean DEFAULT_SOURCE = true;
 
+    public static final String LOWER_BOUND_CH = "lb_ch";
+    public static final String UPPER_BOUND_CH = "ub_ch";
+    
+    public static final String VISIBLE_CH = "vis_ch";
+    public static final String SOURCE_CH = "source_ch";
+    public static final String OWNER_CH = "owner_ch";
+    public static final String REFERENCE_TYPE_CH = "ref_type_ch";
+    public static final String RELATION_CH = "rel_ch";
+    public static final String OPPOSITE_CH = "opp_ch";
+
+
     private int lowerBound;
     private int upperBound;
-    private boolean container;
-    private boolean containment;
     private boolean visible;
     private boolean source;
     private ReferenceableObject owner;
     private ReferenceableObject referenceType;
     private Reference opposite;
     private Relation relation;
+    
+    private long id;
+    private static long counter = 0;
 
-
+    public Reference() {}
+    
     public Reference(Relation relation) {
         this.owner = null;
         this.referenceType = null;
@@ -40,41 +51,33 @@ public class Reference extends MetaObject{
         this.source = DEFAULT_SOURCE;
         this.lowerBound = DEFAULT_LOWER_BOUND;
         this.upperBound = DEFAULT_UPPER_BOUND;
-        this.container = DEFAULT_CONTAINER;
-        this.containment = DEFAULT_CONTAINMENT;
+        
         this.visible = DEFAULT_VISIBLE;
+        this.id = counter++;
     }
 
+    public long getId() {
+        return this.id;
+    }
+    
     public Reference getOpposite() {
         return this.opposite;
     }
 
     public void setOpposite(Reference reference) {
-        if ( reference.getRelation() == this.relation) {
-
-            // kontrola, zda se netvori nekonzistentni relace typu container->regularReference
-            // nebo, containment->regularReference atd.
-            // Pripustne jsou poze relace: container->containment, containment->Container
-            // a regularReference->regularReference
-            if ( (isContainer() && ! reference.isContainment()) ||
-                 (isContainment() && ! reference.isContainer()))
-                return;
-
+            Reference old = this.opposite;
             this.opposite = reference;
-            this.setReferenceType(opposite.getOwner());
-
-            
-            reference.setSource( !source);
-        }
+            firePropertyChange(OPPOSITE_CH, old, this.opposite);
     }
 
     public ReferenceableObject getReferenceType() {
         return this.referenceType;
     }
 
-    private void setReferenceType(ReferenceableObject refObj) {
-        
+    public void setReferenceType(ReferenceableObject refObj) {
+        ReferenceableObject old = this.referenceType;
         this.referenceType = refObj;
+        firePropertyChange(REFERENCE_TYPE_CH, old, this.referenceType);
     }
 
     public ReferenceableObject getOwner() {
@@ -94,7 +97,7 @@ public class Reference extends MetaObject{
     public void setLowerBound(int lowerBound) {
         int old = this.lowerBound;
         this.lowerBound = lowerBound;
-        firePropertyChange("lowerBound", old, this.lowerBound);
+        firePropertyChange(LOWER_BOUND_CH, old, this.lowerBound);
     }
 
     /**
@@ -110,64 +113,10 @@ public class Reference extends MetaObject{
     public void setUpperBound(int upperBound) {
         int old = this.upperBound;
         this.upperBound = upperBound;
-        firePropertyChange("upperBound", old, this.upperBound);
+        firePropertyChange(UPPER_BOUND_CH, old, this.upperBound);
     }
 
-    /**
-     * @return the container
-     */
-    public boolean isContainer() {
-        return container;
-    }
-
-    /**
-     * @param container the container to set
-     */
-    public void setContainer(boolean container) {
-        boolean old = this.container;
-        this.container = container;
-        
-        if ( this.container != !this.containment)
-            setContainment(!this.container);
-        
-        setSource2(this.container);
-        //opposite.setSource(!this.source);
-        if ( opposite != null) {
-            if ( opposite.isContainer() != !this.container)
-                opposite.setContainer(!this.container);
-
-            if ( opposite.isContainment() != !this.containment)
-                opposite.setContainment(!this.containment);
-        }
-        firePropertyChange("container", old, this.container);
-    }
-
-    /**
-     * @return the containment
-     */
-    public boolean isContainment() {
-        return containment;
-    }
-
-    /**
-     * @param containment the containment to set
-     */
-    public void setContainment(boolean containment) {
-        boolean old = this.containment;
-        this.containment = containment;
-        if ( this.container != !this.containment)
-            setContainer(!this.containment);
-        setSource2(this.container);
-        //opposite.setSource(!this.source);
-        if ( opposite != null) {
-            if ( opposite.isContainer() != !this.container)
-                opposite.setContainer(!this.container);
-
-            if ( opposite.isContainment() != !this.containment)
-                opposite.setContainment(!this.containment);
-        }
-        firePropertyChange("containment", old, this.containment);
-    }
+    
 
     /**
      * @return the visible
@@ -182,7 +131,7 @@ public class Reference extends MetaObject{
     public void setVisible(boolean visible) {
         boolean old = this.visible;
         this.visible = visible;
-        firePropertyChange("visible", old, this.visible);
+        firePropertyChange(VISIBLE_CH, old, this.visible);
     }
     
 
@@ -192,7 +141,7 @@ public class Reference extends MetaObject{
     public void setOwner(ReferenceableObject owner) {
         ReferenceableObject old = this.owner;
         this.owner = owner;
-        firePropertyChange("owner", old, this.owner);
+        firePropertyChange(OWNER_CH, old, this.owner);
     }
 
     /**
@@ -202,6 +151,12 @@ public class Reference extends MetaObject{
         return relation;
     }
 
+    public void setRelation(Relation rel) {
+        Relation old = this.relation;
+        this.relation = rel;
+        firePropertyChange(RELATION_CH, old, this.relation);
+    }
+
     /**
      * @return the source
      */
@@ -209,55 +164,29 @@ public class Reference extends MetaObject{
         return source;
     }
 
-    /**
-     * Nastavy indikator, zda reference vystupuje jak zdroj dane relace nebo ne.
-     * Pokud je reference typu container, nebo containment, pak se nastaveni hodnoty
-     * neprovede, protoze container/containmet reference maji tuto hodnotu nastavenou automaticky
-     *
-     * @param source the source to set
-     */
+    
     public void setSource(boolean source) {
-        
-
-        
-        if ( opposite != null)
-            if ( (!container && !containment)) {
-                boolean old = this.source;
-                this.source = source;
-                if ( opposite.isSource() != !this.source)
-                    opposite.setSource( !this.source);
-                firePropertyChange("source", old, this.source);
-            }
-        
-    }
-
-    private void setSource2(boolean source) {
         boolean old = this.source;
         this.source = source;
-        firePropertyChange("source", old, this.source);
-    }
-
-    public void removeContainerContainmentReference() {
-        if ( opposite.isContainer() != false && opposite.isContainment() != false) {
-            boolean con = this.container;
-            boolean contain = this.containment;
-            this.container = false;
-            this.containment = false;
-            this.opposite.removeContainerContainmentReference();
-            firePropertyChange("containment", contain, this.containment);
-            firePropertyChange("container", con, this.container);
-        }
+        firePropertyChange(SOURCE_CH, old, this.source);
+        
     }
 
     @Override
     public String toString() {
         String s = "";
         
-        s += "owner: " + owner.getNameSpace() + ", refType: " + referenceType.getNameSpace() +
-                ", container: " + container + ", containmet: " + containment + 
+        s += "owner: " + owner.getNameSpace() + ", refType: " + referenceType.getNameSpace() + 
                 ", source: " + source + ", relation: " + relation.getNameSpace();
         
         return s;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(long id) {
+        this.id = id;
     }
 
 }

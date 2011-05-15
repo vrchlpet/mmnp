@@ -13,5 +13,4 @@ public enum Layout {
     center,
     right,
     left,
-    flow;
 }

@@ -2,15 +2,9 @@
 
 package org.cvut.vrchlpet.MCore.core;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
-import org.cvut.vrchlpet.MCore.util.AttributeStateChangeListener;
-import org.cvut.vrchlpet.MCore.util.MList;
-import org.cvut.vrchlpet.MCore.visualization.ui.CommonMetaObjectUI;
 import org.cvut.vrchlpet.MCore.visualization.ui.ElementUI;
-import org.cvut.vrchlpet.MCore.visualization.ui.IMetaObjectUI;
 
 /**
  *
@@ -18,6 +12,11 @@ import org.cvut.vrchlpet.MCore.visualization.ui.IMetaObjectUI;
  * @version 1.0
  */
 public class Element extends ReferenceableObject{
+
+    public static final String ATTRIBUTE_REMOVED = "at_rm";
+    public static final String ATTRIBUTE_ADDED = "at_add";
+    public static final String SUPERTYPE_CHANGED = "supT_ch";
+
 
     public static final int DEFAULT_LOWER_BOUND = 0;
     public static final int DEFAULT_UPPER_BOUND = -1;
@@ -37,7 +36,7 @@ public class Element extends ReferenceableObject{
         setNameSpace(DEFAULT_ELEMENT_NAMESPACE);
         setDescription(DEFAULT_ELEMENT_DESCRIPTION);
         this.attributes = new ArrayList<Attribute>();
-        CommonMetaObjectUI elementUI = new ElementUI(this);//instaluje se automaticky
+        ElementUI elementUI = new ElementUI(this);//instaluje se automaticky
     }
 
     public Element(Model model) {
@@ -45,41 +44,21 @@ public class Element extends ReferenceableObject{
         this.model = model;
     }
 
-    public void addAttributeStateChangedListener(AttributeStateChangeListener lst) {
-        listenerList.add(AttributeStateChangeListener.class, lst);
-    }
-
     public boolean removeAttribute(Attribute at) {
         boolean b = attributes.remove(at);
         if ( b)
-            if ( isNotificationEnabled()) {
-                AttributeStateChangeListener [] lst =
-                        listenerList.getListeners(AttributeStateChangeListener.class);
-
-                PropertyChangeEvent evt =
-                        new PropertyChangeEvent(this, "removeAttribute", at, attributes);
-                for ( int i = 0; i < lst.length; i++) {
-                    lst[i].attributeStateChanged(evt);
-                }
-            }
-
+            at.removePropertyChangeListener(this);
+        firePropertyChange(ATTRIBUTE_REMOVED, at, attributes);
         return b;
     }
 
-    public void addAttribute(Attribute at) {
+    public Attribute createAttribute(String name) {
+        Attribute at = new Attribute(this);
+        at.setName(name);
+        at.addPropertyChangeListener(this);
         attributes.add(at);
-
-
-        if ( isNotificationEnabled()) {
-                AttributeStateChangeListener [] lst =
-                        listenerList.getListeners(AttributeStateChangeListener.class);
-
-                PropertyChangeEvent evt =
-                        new PropertyChangeEvent(this, "addAttribute", attributes, at);
-                for ( int i = 0; i < lst.length; i++) {
-                    lst[i].attributeStateChanged(evt);
-                }
-            }
+        firePropertyChange(ATTRIBUTE_ADDED, attributes, at);
+        return at;
     }
 
     public ArrayList<Attribute> getAttributes() {
@@ -132,7 +111,7 @@ public class Element extends ReferenceableObject{
 
         Element old = this.superElement;
         this.superElement = superElement;
-        firePropertyChange("superElement", old, this.superElement);
+        firePropertyChange(SUPERTYPE_CHANGED, old, this.superElement);
 
         return true;
     }

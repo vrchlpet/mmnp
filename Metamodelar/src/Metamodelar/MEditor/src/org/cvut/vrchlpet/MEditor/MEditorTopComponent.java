@@ -5,11 +5,11 @@
 package org.cvut.vrchlpet.MEditor;
 
 import java.util.logging.Logger;
-import org.cvut.vrchlpet.MCore.core.Model;
-import org.cvut.vrchlpet.MCore.model.MModel;
+import org.cvut.vrchlpet.MEditor.controller.IMasterController;
+import org.cvut.vrchlpet.MEditor.controller.MasterController;
+import org.cvut.vrchlpet.MCore.model.IMModel;
 import org.cvut.vrchlpet.MCore.util.Info;
-import org.cvut.vrchlpet.MEditor.nodes.ModelNode;
-import org.openide.util.NbBundle;
+import org.cvut.vrchlpet.MEditor.nodes.GeneralModelNode;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 //import org.openide.util.ImageUtilities;
@@ -17,14 +17,14 @@ import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.ExplorerUtils;
 import org.openide.explorer.view.BeanTreeView;
-import org.openide.nodes.AbstractNode;
+import org.openide.windows.CloneableTopComponent;
 
 /**
  * Top component which displays something.
  */
 @ConvertAsProperties(dtd = "-//org.cvut.vrchlpet.MEditor//MEditor//EN",
 autostore = false)
-public final class MEditorTopComponent extends TopComponent implements ExplorerManager.Provider{
+public final class MEditorTopComponent extends CloneableTopComponent implements ExplorerManager.Provider{
 
     private static MEditorTopComponent instance;
     /** path to the icon used by the component and its open action */
@@ -34,10 +34,17 @@ public final class MEditorTopComponent extends TopComponent implements ExplorerM
     public MEditorTopComponent() {
         initComponents();
         associateLookup (ExplorerUtils.createLookup(mgr, getActionMap()));
-        AbstractNode an = new ModelNode(Info.createRandomModel());
-        an.setDisplayName(an.getLookup().lookup(MModel.class).getModel().getNameSpace());
-        mgr.setRootContext(an);
+        IMModel model = Info.createRandomModel();
+        IMasterController controller = new MasterController(model);
+        IMasterEditorManager manager = new MasterEditorManager(model, controller);
+        mgr.setRootContext(new GeneralModelNode(manager));
 
+    }
+
+    public MEditorTopComponent(IMasterEditorManager manager) {
+        initComponents();
+        associateLookup (ExplorerUtils.createLookup(mgr, getActionMap()));
+        mgr.setRootContext(new GeneralModelNode(manager));
     }
 
     /** This method is called from within the constructor to

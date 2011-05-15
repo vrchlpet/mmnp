@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
+<filesystem>
+    <folder name="Loaders">
+        <folder name="text">
+            <folder name="x-mm">
+                <folder name="Actions">
+                    <file name="org-openide-actions-DeleteAction.shadow">
+                        <attr name="originalFile" stringvalue="Actions/Edit/org-openide-actions-DeleteAction.instance"/>
+                        <attr name="position" intvalue="600"/>
+                    </file>
+                    <file name="org-openide-actions-OpenAction.shadow">
+                        <attr name="originalFile" stringvalue="Actions/System/org-openide-actions-OpenAction.instance"/>
+                        <attr name="position" intvalue="100"/>
+                    </file>
+                    <file name="org-openide-actions-PropertiesAction.shadow">
+                        <attr name="originalFile" stringvalue="Actions/System/org-openide-actions-PropertiesAction.instance"/>
+                        <attr name="position" intvalue="1400"/>
+                    </file>
+                    <file name="org-openide-actions-RenameAction.shadow">
+                        <attr name="originalFile" stringvalue="Actions/System/org-openide-actions-RenameAction.instance"/>
+                        <attr name="position" intvalue="700"/>
+                    </file>
+                </folder>
+                <folder name="Factories">
+                    <file name="MMDataLoader.instance">
+                        <attr name="SystemFileSystem.icon" urlvalue="nbresloc:/org/cvut/vrchlpet/MFileType/MetamodelIcon.png"/>
+                        <attr name="dataObjectClass" stringvalue="org.cvut.vrchlpet.MFileType.MMDataObject"/>
+                        <attr name="instanceCreate" methodvalue="org.openide.loaders.DataLoaderPool.factory"/>
+                        <attr name="mimeType" stringvalue="text/x-mm"/>
+                    </file>
+                </folder>
+            </folder>
+        </folder>
+    </folder>
+    <folder name="Services">
+        <folder name="MIMEResolver">
+            <file name="MMResolver.xml" url="MMResolver.xml">
+                <attr name="displayName" bundlevalue="org.cvut.vrchlpet.MFileType.Bundle#Services/MIMEResolver/MMResolver.xml"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Templates">
+        <folder name="Metamodelar">
+            <file name="MMTemplate.mm" url="MMTemplate.mm">
+                <attr name="displayName" bundlevalue="org.cvut.vrchlpet.MFileType.Bundle#Templates/Other/MMTemplate.mm"/>
+                <attr name="template" boolvalue="true"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Templates">
+        <folder name="Project">
+            <folder name="Metamodelar">
+                <file name="MMTemplateProject.zip" url="MMTemplateProject.zip">
+                    <attr name="displayName" bundlevalue="org.cvut.vrchlpet.MFileType.Bundle#Templates/Project/Metamodelar/MMTemplateProject.zip"/>
+                    <attr name="instantiatingIterator" methodvalue="org.cvut.vrchlpet.MMTemplateWizardIterator.createIterator"/>
+                    <attr name="instantiatingWizardURL" urlvalue="nbresloc:/org/cvut/vrchlpet/MMTemplateDescription.html"/>
+                    <attr name="template" boolvalue="true"/>
+                </file>
+            </folder>
+        </folder>
+    </folder>
+</filesystem>

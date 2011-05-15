@@ -5,15 +5,18 @@
 
 package org.cvut.vrchlpet.MEditor.nodes;
 
+import java.awt.Image;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import org.cvut.vrchlpet.MCore.core.Element;
+import org.cvut.vrchlpet.MEditor.controller.IMasterController;
 import org.cvut.vrchlpet.MCore.core.Reference;
-import org.openide.ErrorManager;
-import org.openide.nodes.AbstractNode;
+import org.cvut.vrchlpet.MCore.core.Relation;
+import org.cvut.vrchlpet.MEditor.actions.ActionFactory;
+import org.cvut.vrchlpet.MEditor.util.ReferenceAdapter;
+import org.openide.nodes.Children;
 import org.openide.nodes.PropertySupport;
 import org.openide.nodes.Sheet;
-import org.openide.util.WeakListeners;
+import org.openide.util.ImageUtilities;
 import org.openide.util.lookup.Lookups;
 
 /**
@@ -21,15 +24,36 @@ import org.openide.util.lookup.Lookups;
  * @author Vrchlavsky Petr
  * @version 1.0
  */
-public class ReferenceNode extends AbstractNode implements PropertyChangeListener{
+public class ReferenceNode extends MAbstractNode implements PropertyChangeListener{
 
-    private Reference ref;
+    public ReferenceNode(Reference obj, IMasterController controller) {
+        super(Children.LEAF, Lookups.singleton(obj), controller);
+        obj.addPropertyChangeListener(this);
+        this.addNodeListener(new NodeListenerKiller(obj,this));
+        obj.getRelation().addPropertyChangeListener(this);
+        this.addNodeListener( new NodeListenerKiller(obj.getRelation(), this));
+        ActionFactory.addActions(obj, this);
+        setDisplayName();
+    }
 
-    public ReferenceNode(Reference obj) {
-        super(new ElementContentChildren((Element)obj.getOwner()), Lookups.singleton((Element)obj.getOwner()));
-        setDisplayName(obj.getOpposite().getOwner().getNameSpace());
-        this.ref = obj;
-        ref.addPropertyChangeListener(this);
+    private void setDisplayName() {
+        Reference ref = getLookup().lookup(Reference.class);
+        setDisplayName("(" + ref.getId() + ")" + ref.getReferenceType().getNameSpace() + ((ref.getOpposite()==null)?"":": " + ref.getOpposite().getId()));
+    }
+    
+    
+    @Override
+    protected Image getIcon() {
+
+        Reference ref = getLookup().lookup(Reference.class);
+
+        if ( ref.getRelation().isContainer() && ref.isSource()) {
+            return ImageUtilities.loadImage("org/cvut/vrchlpet/MEditor/icons/containerIco.png");
+        } else if ( ref.getRelation().isContainer() && !ref.isSource()) {
+            return ImageUtilities.loadImage("org/cvut/vrchlpet/MEditor/icons/containmentIco.png");
+        } else {
+            return ImageUtilities.loadImage("org/cvut/vrchlpet/MEditor/icons/regularRefIco.png");
+        }
     }
 
 
@@ -40,31 +64,38 @@ public class ReferenceNode extends AbstractNode implements PropertyChangeListene
         Sheet.Set set = Sheet.createPropertiesSet();
         set.setName("set");
 
-
+        Reference ref = getLookup().lookup(Reference.class);
+        ReferenceAdapter ra = new ReferenceAdapter(ref, controller);
 
 
 
         try {
+            Property property0 = new PropertySupport.Reflection(ref.getRelation(), String.class, "getNameSpace", null);
 
+            set.put(property0);
+            property0.setName("relation");
 
-            Property property1 = new PropertySupport.Reflection(ref,
-                boolean.class, "container");
-            set.put(property1);
-            property1.setName("container");
-
-            Property property2 = new PropertySupport.Reflection(ref,
-                boolean.class, "containment");
-            set.put(property2);
-            property2.setName("containment");
-
-            Property property3 = new PropertySupport.Reflection(ref,
+            Property property3 = new PropertySupport.Reflection(ra,
                 boolean.class, "source");
             set.put(property3);
             property3.setName("source");
 
+            Property property4 = new PropertySupport.Reflection(ra,
+                int.class, "lowerBound");
+            set.put(property4);
+            property4.setName("lower bound");
+
+            Property property5 = new PropertySupport.Reflection(ra,
+                int.class, "upperBound");
+            set.put(property5);
+            property5.setName("upper bound");
+
+            Property property7 = new PropertySupport.Reflection(ra,
+                boolean.class, "visible");
+            set.put(property7);
+            property7.setName("visible");
 
         } catch (NoSuchMethodException ex) {
-            ErrorManager.getDefault();
             ex.printStackTrace();
         }
 
@@ -75,10 +106,16 @@ public class ReferenceNode extends AbstractNode implements PropertyChangeListene
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        //System.out.println("neco se stalo");
-        //this.getSheet().get("set").get(evt.getPropertyName()).setValue(evt.getPropertyName(), evt.getNewValue());
         setSheet(createSheet());
-
+        
+        if ( Relation.CONTAINER_CH.equals(evt.getPropertyName()) ||
+                Reference.SOURCE_CH.equals(evt.getPropertyName()) ||
+                Reference.RELATION_CH.equals(evt.getPropertyName()) ) {
+            this.icon = getIcon();
+            fireIconChange();
+            fireOpenedIconChange();
+        } else if ( Reference.OPPOSITE_CH.equals(evt.getPropertyName())) {
+            setDisplayName();
+        }
     }
-
 }
