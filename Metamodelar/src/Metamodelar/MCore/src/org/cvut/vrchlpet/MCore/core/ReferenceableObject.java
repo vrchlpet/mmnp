@@ -10,15 +10,20 @@ import java.util.List;
 
 /**
  *
+ * Trida reprezentujici objekt, na ktery se lze odkazovat a ktery se sam muze odkazovat na dalsi objekty
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
-public class ReferenceableObject extends MetaObject{
+public class ReferenceableObject extends NamedElement{
 
     public static final String REFERENCE_REMOVED  = "ref_rm";
     public static final String REFERECE_ADDED = "ref_add";
 
+    // momentalne nevyizite - rezervace pro vrstvu modelu
     private String id;
+
+    // seznam referenci na dalsi objekty
     private ArrayList<Reference> references;
 
 
@@ -27,6 +32,7 @@ public class ReferenceableObject extends MetaObject{
         this.references = new ArrayList<Reference>();
     }
 
+    // vytvori referenci na objekt definovany parametrem opposite
     public Reference createReference(Relation relation, ReferenceableObject opposite) {
         Reference ref = new Reference(relation);
         ref.setReferenceType(opposite);
@@ -41,24 +47,6 @@ public class ReferenceableObject extends MetaObject{
         if ( references.remove(ref))
             firePropertyChange(REFERENCE_REMOVED, ref, references);
     }
-
-/*
-    // vrati true, pokud je parameter kontainerem pro aktualni Object, a to
-    // primo i neprimo
-    public boolean isContainer(ReferenceableObject ro) {
-
-        for ( Reference ref : ro.getReferences()) {
-            if ( ref.isContainer()) {
-                if ( ref.getOpposite().getOwner() == this)
-                    return true;
-                if ( isContainer(ref.getOpposite().getOwner()))
-                    return true;
-            }
-        }
-        
-
-        return false;
-    }*/
 
     public ArrayList<Reference> getReferences() {
         return this.references;

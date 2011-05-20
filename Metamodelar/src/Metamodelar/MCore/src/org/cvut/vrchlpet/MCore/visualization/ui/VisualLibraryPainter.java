@@ -9,8 +9,6 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Polygon;
-import java.awt.Rectangle;
-import java.io.File;
 import org.cvut.vrchlpet.MCore.visualization.BackgroundColor;
 import org.cvut.vrchlpet.MCore.visualization.BackgroundImage;
 import org.cvut.vrchlpet.MCore.visualization.ElementLabel;
@@ -32,6 +30,9 @@ import org.netbeans.api.visual.widget.Widget;
 
 /**
  *
+ * Implementace vykreslovace pomoci Visual library
+ *
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
@@ -46,19 +47,22 @@ public class VisualLibraryPainter implements IPainter{
 
 
 
+    // kresli elementy
     @Override
     public Widget paint(ElementUI el) {
         MWidget w = new MWidget(scene);
         w.setLayout(LayoutFactory.createOverlayLayout());
         w.setCheckClipping(true);
         ElementVisualization ev = el.getVisualization();
-        
+
+        // barva pozadi
         BackgroundColor col = ev.getBackgroundColor();
         if ( col != null) {
             w.setOpaque (true);
             w.setBackground(col.getColor());
         }
-        
+
+        // ohraniceni
         MBorder bor = ev.getBorder();
         if ( bor != null) {
             if ( bor.isVisible()) {
@@ -71,6 +75,8 @@ public class VisualLibraryPainter implements IPainter{
             }
         }
 
+
+        // obrazek elementu
         BackgroundImage im = ev.getBackgroundImage();
         if ( im != null) {
             ImageWidget iw = null;
@@ -83,7 +89,7 @@ public class VisualLibraryPainter implements IPainter{
         w.getActions().addAction(ActionFactory.createMoveAction());
 
         
-        
+        // vzkresleni vsech popisku
         for ( ElementLabel l : ev.getLabels()) {
             LabelWidget lw = new LabelWidget(scene, l.getText());
             lw.getActions().addAction(ActionFactory.createInplaceEditorAction (new RenameEditor ()));
@@ -91,6 +97,8 @@ public class VisualLibraryPainter implements IPainter{
                 lw.setPreferredLocation(new Point(l.getLabelPosition().getX(), l.getLabelPosition().getY()));
                 w.addWidget(lw, LayoutFactory.createAbsoluteLayout());
             } else {
+
+                // nastaveni pozice popisku
                 switch(l.getLabelPosition().getLayout()) {
                     case buttom:
                         lw.setOrientation(LabelWidget.Orientation.NORMAL);
@@ -127,17 +135,21 @@ public class VisualLibraryPainter implements IPainter{
         return w;
     }
 
+    // kresli relace - cary mezi elementy
     @Override
     public ConnectionWidget paint(RelationUI rel) {
         ConnectionWidget cw = new ConnectionWidget(scene);
         cw.setSourceAnchorShape (new MyArrow(MAnchorShape.valueOf(rel.getVisualization().getReferenceSourceArrow().toString())));
         cw.setTargetAnchorShape (new MyArrow(MAnchorShape.valueOf(rel.getVisualization().getReferenceTargetArrow().toString())));
-        
+
+        // vykresleni popisku relace
         for ( ConnectionLabel cl : rel.getVisualization().getLabels()) {
             LabelWidget lw = new LabelWidget (scene, cl.getText());
             lw.setOpaque (true);
             
             cw.addChild (lw);
+
+            // nastaveni pozice popisku
             switch (cl.getConnectionLabelPosition()) {
                 case center:
                     cw.setConstraint (lw, LayoutFactory.ConnectionWidgetLayoutAlignment.CENTER_RIGHT, 0.5f);
@@ -160,6 +172,7 @@ public class VisualLibraryPainter implements IPainter{
     }
 
 
+    // Univerzalni widget reprezentujici element
     private class MWidget extends Widget {
 
 
@@ -167,6 +180,7 @@ public class VisualLibraryPainter implements IPainter{
             super(scene);
         }
 
+        // kazdy potomek je ulozen do vlastni vrstvy - kvuli poloze jednotlivych obrazku, popisku atd...
         public void addWidget(Widget widget, Layout layout) {
             LayerWidget lw = new LayerWidget(getScene());
             addChild(lw);
@@ -175,6 +189,7 @@ public class VisualLibraryPainter implements IPainter{
         }
     }
 
+    // editor pro prejmenovani popisku "inplace" technologii
     private static class RenameEditor implements TextFieldInplaceEditor {
 
         @Override
@@ -193,6 +208,7 @@ public class VisualLibraryPainter implements IPainter{
         }
     }
 
+    // trida se stara o vykreslovani sipek
     private class MyArrow implements AnchorShape {
 
         private MAnchorShape shape;
@@ -226,38 +242,47 @@ public class VisualLibraryPainter implements IPainter{
     
 }
 
-
+// vycet tvaru sipek, ktere umi VisualLibraryPainter vykreslit
 enum MAnchorShape {
     CYRCLE {
+        @Override
        public int getRadius() {
            return 0;
        }
+        @Override
        public int getCutDistance() {
            return 20;
        }
+        @Override
        public void paint(Graphics2D g) {
            g.drawOval(0, -10, 20, 20);
        }
     },
     TRIANGLE {
+        @Override
        public int getRadius() {
            return 0;
        }
+        @Override
        public int getCutDistance() {
            return 14;
        }
+        @Override
        public void paint(Graphics2D g) {
            Polygon p = new Polygon(new int [] {0,14,14}, new int [] {0,-7,7}, 3);
            g.drawPolygon(p);
        }
     },
     FILLTRIANGLE {
+        @Override
        public int getRadius() {
            return 0;
        }
+        @Override
        public int getCutDistance() {
            return 14;
        }
+        @Override
        public void paint(Graphics2D g) {
            Polygon p = new Polygon(new int [] {0,14,14}, new int [] {0,-7,7}, 3);
            
@@ -265,12 +290,15 @@ enum MAnchorShape {
        }
     },
     DIAMOND {
+        @Override
        public int getRadius() {
            return 0;
        }
+        @Override
        public int getCutDistance() {
            return 30;
        }
+        @Override
        public void paint(Graphics2D g) {
            Polygon p = new Polygon(new int [] {0,15,30,15}, new int [] {0,6,0,-6}, 4);
            
@@ -278,12 +306,15 @@ enum MAnchorShape {
        }
     },
     FILLDIAMOND{
+        @Override
        public int getRadius() {
            return 0;
        }
+        @Override
        public int getCutDistance() {
            return 30;
        }
+        @Override
        public void paint(Graphics2D g) {
            Polygon p = new Polygon(new int [] {0,15,30,15}, new int [] {0,6,0,-6}, 4);
            
@@ -291,24 +322,30 @@ enum MAnchorShape {
        }
     },
     SIMPLE{
+        @Override
        public int getRadius() {
            return 0;
        }
+        @Override
        public int getCutDistance() {
            return 0;
        }
+        @Override
        public void paint(Graphics2D g) {
            g.drawLine(0, 0, 14, -7);
            g.drawLine(0, 0, 14, 7);
        }
     },
     NONE{
+        @Override
        public int getRadius() {
            return 0;
        }
+        @Override
        public int getCutDistance() {
            return 0;
        }
+        @Override
        public void paint(Graphics2D g) {
        }
     };

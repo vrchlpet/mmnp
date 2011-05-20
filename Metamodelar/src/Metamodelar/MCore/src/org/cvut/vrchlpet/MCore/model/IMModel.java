@@ -5,11 +5,13 @@
 
 package org.cvut.vrchlpet.MCore.model;
 
-import java.util.ArrayList;
+
 import java.util.Date;
 import org.cvut.vrchlpet.MCore.core.Model;
 
 /**
+ *
+ * Obecne rozhrani modelu/meta-modelu
  *
  * @author Vrchlavsky Petr
  * @version 1.0

@@ -15,6 +15,15 @@ import org.openide.WizardDescriptor;
 import org.openide.WizardValidationException;
 import org.openide.filesystems.FileUtil;
 
+
+
+    /**
+     *
+     * Generovana trida dialogu pro tvorbu novych metamodelu
+     *
+     * @author Vrchlavsky Petr
+     * @version 1.0
+     */
 public class MMTemplatePanelVisual extends JPanel implements DocumentListener {
 
     public static final String PROP_PROJECT_NAME = "projectName";

@@ -9,11 +9,38 @@
                 <attr name="instanceCreate" methodvalue="org.openide.windows.TopComponent.openAction"/>
             </file>
         </folder>
+        <folder name="File">
+            <file name="org-openide-actions-SaveAction.instance">
+                <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.context"/>
+                <attr name="delegate" newvalue="org.openide.actions.SaveAction"/>
+                <attr name="selectionType" stringvalue="EXACTLY_ONE"/>
+                <attr name="surviveFocusChange" boolvalue="false"/>
+                <attr name="displayName" bundlevalue="org/openide/actions/Bundle#Save"/>
+                <attr name="noIconInMenu" boolvalue="false"/>
+                <attr name="iconBase" stringvalue="org/openide/resources/actions/save.png"/>
+                <attr name="type" stringvalue="org.openide.cookies.SaveCookie"/>
+            </file>
+        </folder>
     </folder>
     <folder name="Menu">
         <folder name="Window">
             <file name="MEditorAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/org-cvut-vrchlpet-MEditor-MEditorAction.instance"/>
+            </file>
+        </folder>
+        <folder name="File">
+            <file name="SaveAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/File/org-openide-actions-SaveAction.instance"/>
+                <attr name="position" intvalue="100"/>
+            </file>
+        </folder>
+    </folder>
+
+    <folder name="Toolbars">
+        <folder name="File">
+            <file name="SaveAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/File/org-openide-actions-SaveAction.instance"/>
+                <attr name="position" intvalue="100"/>
             </file>
         </folder>
     </folder>

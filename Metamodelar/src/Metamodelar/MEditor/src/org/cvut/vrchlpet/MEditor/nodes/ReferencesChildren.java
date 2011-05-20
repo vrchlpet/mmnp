@@ -29,7 +29,7 @@ public class ReferencesChildren extends Children.Keys<Reference> {
 
     @Override
     protected Node[] createNodes(Reference o) {
-        Reference obj = (Reference) o;
+        Reference obj =  o;
         return new Node[] { new ReferenceNode(obj, this.controller) };
     }
 

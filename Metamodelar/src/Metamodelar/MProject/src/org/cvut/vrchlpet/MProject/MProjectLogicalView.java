@@ -26,6 +26,9 @@ import org.openide.util.lookup.ProxyLookup;
 
 /**
  *
+ * Trida se stara o tvorbu stromove struktury projektu ve spravci projektu.
+ *
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
@@ -40,17 +43,21 @@ public class MProjectLogicalView implements LogicalViewProvider {
     @Override
     public org.openide.nodes.Node createLogicalView() {
         try {
-            //Get the Text directory, creating if deleted
+            //Get the project directory
             FileObject mmFileObject = project.getFolder(true);
 
             //Get the DataObject that represents it
             DataFolder mmDataFolder =
                     DataFolder.findFolder(mmFileObject);
+
+            // potomci uzlu projektu - jednotlive soubory metamodelu
             Children ch = mmDataFolder.createNodeChildren(new DataFilter() {
 
                 @Override
                 public boolean acceptDataObject(DataObject d) {
                     String name = d.getPrimaryFile().getPath();
+
+                    // pouze soubory metamodelare se zobrazi
                     if ( !d.getPrimaryFile().isFolder() && (name.endsWith(".mm") || name.endsWith(".MM")))
                         return true;
                     
@@ -59,17 +66,14 @@ public class MProjectLogicalView implements LogicalViewProvider {
             }); 
             
             
-            //Get its default node-we'll wrap our node around it to change the
-            //display name, icon, etc
+            
             Node mmFolderNode = new AbstractNode(ch);
 
-            //This FilterNode will be our project node
+            
             return new MMNode(mmFolderNode, project);
 
         } catch (DataObjectNotFoundException donfe) {
             Exceptions.printStackTrace(donfe);
-            //Fallback-the directory couldn't be created -
-            //read-only filesystem or something evil happened
             return new AbstractNode(Children.LEAF);
         }
     }
@@ -83,7 +87,7 @@ public class MProjectLogicalView implements LogicalViewProvider {
 
 
 
-    /** This is the node you actually see in the project tab for the project */
+    // tato trida je ve skutecnosti uzel, ktery vidime ve spravci projektu
     private class MMNode extends FilterNode {
 
         final MProject project;
@@ -99,14 +103,12 @@ public class MProjectLogicalView implements LogicalViewProvider {
             this.project = project;
         }
 
+        // vyuziti defaultnich NetBeans akci
         @Override
         public Action[] getActions(boolean arg0) {
             Action[] nodeActions = new Action[7];
-            
             nodeActions[0] = CommonProjectActions.newFileAction();
-            //nodeActions[1] = CommonProjectActions.copyProjectAction();
             nodeActions[2] = CommonProjectActions.deleteProjectAction();
-            //nodeActions[5] = CommonProjectActions.setAsMainProjectAction();
             nodeActions[6] = CommonProjectActions.closeProjectAction();
             return nodeActions;
         }

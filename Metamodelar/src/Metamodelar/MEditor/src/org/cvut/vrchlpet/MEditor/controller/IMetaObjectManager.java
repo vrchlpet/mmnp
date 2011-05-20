@@ -5,7 +5,7 @@
 
 package org.cvut.vrchlpet.MEditor.controller;
 
-import org.cvut.vrchlpet.MCore.core.MetaObject;
+import org.cvut.vrchlpet.MCore.core.NamedElement;
 
 /**
  *
@@ -13,6 +13,6 @@ import org.cvut.vrchlpet.MCore.core.MetaObject;
  * @version 1.0
  */
 public interface IMetaObjectManager {
-    public boolean changeNamespace(MetaObject obj, String namespace);
-    public boolean changeDescriptio(MetaObject obj, String description);
+    public boolean changeNamespace(NamedElement obj, String namespace);
+    public boolean changeDescriptio(NamedElement obj, String description);
 }

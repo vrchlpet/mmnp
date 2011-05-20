@@ -7,34 +7,32 @@ package org.cvut.vrchlpet.MProject;
 
 import java.awt.Image;
 import java.beans.PropertyChangeListener;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ProjectInformation;
 import org.netbeans.spi.project.ActionProvider;
-import org.netbeans.spi.project.CopyOperationImplementation;
 import org.netbeans.spi.project.DeleteOperationImplementation;
 import org.netbeans.spi.project.ProjectState;
 import org.netbeans.spi.project.ui.support.DefaultProjectOperations;
 import org.openide.filesystems.FileObject;
-import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
 import org.openide.util.Lookup;
 import org.openide.util.lookup.Lookups;
 
 /**
  *
+ * Trida predstavujici projekt Metamodelare
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
 public class MProject implements Project {
 
-    private final FileObject projectDir;
+    private final FileObject projectDir; // data
     private final ProjectState state;
     private Lookup lkp;
 
@@ -48,25 +46,32 @@ public class MProject implements Project {
         return projectDir;
     }
 
-    FileObject getFolder(boolean create) {
+    public FileObject getFolder(boolean create) {
         return projectDir;
     }
 
-    //The project type's capabilities are registered in the project's lookup:
+    
     @Override
     public Lookup getLookup() {
         if (lkp == null) {
             lkp = Lookups.fixed(new Object[]{
-                        state, //allow outside code to mark the project as needing saving
-                        new ActionProviderImpl(), //Provides standard actions like Build and Clean
-                        new MDeleteOperation(),
-                        new Info(), //Project information implementation
-                        new MProjectLogicalView(this), //Logical view of project implementation
+                        state, 
+                        new ActionProviderImpl(), // standardni akce NetBeans
+                        new MDeleteOperation(), // akce mazani
+                        new Info(), // info o projektu
+                        new MProjectLogicalView(this), // struktura projektu
                     });
         }
         return lkp;
     }
 
+    /**
+     *
+     * Trida sprostredkujici defaultni operace prostredi NetBeans. Konkretne delete a copy.
+     *
+     * @author Vrchlavsky Petr
+     * @version 1.0
+     */
     private final class ActionProviderImpl implements ActionProvider {
 
         private String[] supported = new String[]{
@@ -101,25 +106,43 @@ public class MProject implements Project {
         }
     }
 
+    /**
+     *
+     * Trida zajistujici delete operaci
+     *
+     * @author Vrchlavsky Petr
+     * @version 1.0
+     */
     private final class MDeleteOperation implements DeleteOperationImplementation {
 
+        @Override
         public void notifyDeleting() throws IOException {
         }
 
+        @Override
         public void notifyDeleted() throws IOException {
         }
 
+        @Override
         public List<FileObject> getMetadataFiles() {
             List<FileObject> dataFiles = new ArrayList<FileObject>();
             return dataFiles;
         }
 
+        @Override
         public List<FileObject> getDataFiles() {
             List<FileObject> dataFiles = new ArrayList<FileObject>();
             return dataFiles;
         }
     }
 
+    /**
+     *
+     * Trida poskytuje informace o projektu.
+     *
+     * @author Vrchlavsky Petr
+     * @version 1.0
+     */
     private final class Info implements ProjectInformation {
 
         @Override
@@ -140,12 +163,12 @@ public class MProject implements Project {
 
         @Override
         public void addPropertyChangeListener(PropertyChangeListener pcl) {
-            //do nothing, won't change
+            //neni treba
         }
 
         @Override
         public void removePropertyChangeListener(PropertyChangeListener pcl) {
-            //do nothing, won't change
+            //neni treba
         }
 
         @Override

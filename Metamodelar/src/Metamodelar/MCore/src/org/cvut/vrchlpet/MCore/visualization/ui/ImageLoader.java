@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
 
 /**
  *
+ * Trida obstaravajici nahravani obrazku
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */

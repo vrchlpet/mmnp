@@ -7,10 +7,12 @@ import java.util.Date;
 
 /**
  *
+ * Kontejner pro meta-objekty
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
-public class Model extends MetaObject{
+public class Model extends NamedElement{
 
     public static final String ELEMENT_REMOVED = "el_rm";
     public static final String ELEMENT_ADDED = "el_add";
@@ -18,50 +20,19 @@ public class Model extends MetaObject{
     public static final String RELATION_ADDED = "rel_add";
 
 
-
-    protected Date dateOfCreation;
-    protected String version;
+    // seznam relaci
     private ArrayList<Relation> relations;
+
+    // seznam elementu
     private ArrayList<Element> elements;
 
     public static final String DEFAULT_VERSION = "1.0";
 
     public Model() {
-        this.dateOfCreation = new Date();
         this.relations = new ArrayList<Relation>();
         this.elements = new ArrayList<Element>();
-        version = DEFAULT_VERSION;
     }
 
-
-
-    /**
-     * @return the dateOfCreation
-     */
-    public Date getDateOfCreation() {
-        return dateOfCreation;
-    }
-
-    /**
-     * @param dateOfCreation the dateOfCreation to set
-     */
-    public void setDateOfCreation(Date created) {
-        this.dateOfCreation = created;
-    }
-
-    /**
-     * @return the version
-     */
-    public String getVersion() {
-        return version;
-    }
-
-    /**
-     * @param version the version to set
-     */
-    public void setVersion(String version) {
-        this.version = version;
-    }
 
     public Element createElement() {
         Element el = new Element(this);

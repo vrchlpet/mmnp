@@ -28,7 +28,7 @@ public class AttributeChildren extends Children.Keys<Attribute>{
 
     @Override
     protected Node[] createNodes(Attribute o) {
-        Attribute obj = (Attribute) o;
+        Attribute obj = o;
         return new Node[] { new AttributeNode(obj, this.controller) };
     }
 

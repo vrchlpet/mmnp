@@ -7,6 +7,8 @@ package org.cvut.vrchlpet.MCore.visualization;
 
 /**
  *
+ * Trida reprezentuje obecnou informaci o pozici
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
@@ -18,9 +20,14 @@ public class Position {
     public static final boolean DEFAULT_ABSOLUTE = false;
     public static final Layout DEFAULT_LAYOUT = Layout.center;
 
+
     private int x;
     private int y;
+    
+    // indikace, zda se jedna o absolutni pozici
     private boolean absolute;
+
+    // pokud je parameter absolute = false, pak se bere v uvahu Layout
     private Layout layout;
 
 

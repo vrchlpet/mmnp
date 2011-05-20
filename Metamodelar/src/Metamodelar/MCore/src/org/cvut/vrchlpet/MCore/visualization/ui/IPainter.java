@@ -7,6 +7,9 @@ package org.cvut.vrchlpet.MCore.visualization.ui;
 
 /**
  *
+ * Obecne rozhrani vykreslovace. Urcene pro ruzne knihovny a framevorky
+ * V soucasne dobje jej implementuje pouze knihovna VisualLibrary
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */

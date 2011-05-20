@@ -7,6 +7,8 @@ import java.awt.Color;
 
 /**
  *
+ * Vycet datovych typu
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
@@ -19,7 +21,7 @@ public enum MData{
             }
 
             @Override
-            public Class getDataClass() {
+            public Class<String> getDataClass() {
                 return String.class;
             }
             
@@ -35,7 +37,7 @@ public enum MData{
             }
 
             @Override
-            public Class getDataClass() {
+            public Class<Boolean> getDataClass() {
                 return Boolean.class;
             }
             
@@ -51,7 +53,7 @@ public enum MData{
             }
 
             @Override
-            public Class getDataClass() {
+            public Class<Double> getDataClass() {
                 return Double.class;
             }
             
@@ -67,7 +69,7 @@ public enum MData{
             }
 
             @Override
-            public Class getDataClass() {
+            public Class<Integer> getDataClass() {
                 return Integer.class;
             }
             
@@ -83,7 +85,7 @@ public enum MData{
             }
 
             @Override
-            public Class getDataClass() {
+            public Class<Character> getDataClass() {
                 return Character.class;
             }
             
@@ -99,7 +101,7 @@ public enum MData{
             }
 
             @Override
-            public Class getDataClass() {
+            public Class<Color> getDataClass() {
                 return Color.class;
             }
             
@@ -121,7 +123,7 @@ public enum MData{
             return STRING;
         }
 
-        public static MData getType(Class clazz) {
+        public static MData getType(Class<Object> clazz) {
             MData [] val = values();
 
             for ( int i = 0; i < val.length; i++) {
@@ -134,7 +136,7 @@ public enum MData{
 
         @Override
         public abstract String toString();
-        public abstract Class getDataClass();
+        public abstract Class<? extends Object> getDataClass();
         public abstract Object getDefault();
     
 }

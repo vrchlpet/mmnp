@@ -7,7 +7,7 @@ package org.cvut.vrchlpet.MEditor.controller;
 
 import org.cvut.vrchlpet.MEditor.controller.IMasterController;
 import org.cvut.vrchlpet.MEditor.controller.IMetaObjectManager;
-import org.cvut.vrchlpet.MCore.core.MetaObject;
+import org.cvut.vrchlpet.MCore.core.NamedElement;
 
 /**
  *
@@ -24,7 +24,7 @@ public class MetaObjectManager implements IMetaObjectManager{
     }
 
     @Override
-    public boolean changeNamespace(MetaObject obj, String namespace) {
+    public boolean changeNamespace(NamedElement obj, String namespace) {
         
         String val = namespace.trim();
         if ( val.length() == 0 || val.equals(""))
@@ -39,7 +39,7 @@ public class MetaObjectManager implements IMetaObjectManager{
     }
 
     @Override
-    public boolean changeDescriptio(MetaObject obj, String description) {
+    public boolean changeDescriptio(NamedElement obj, String description) {
         obj.setDescription(description);
         return true;
     }

@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
 <filesystem>
+    <folder name="Actions">
+        <folder name="File">
+            <file name="org-cvut-vrchlpet-MFileType-SaveSupport.instance">
+                <attr name="delegate" methodvalue="org.openide.awt.Actions.inject"/>
+                <attr name="displayName" bundlevalue="org.cvut.vrchlpet.MFileType.Bundle#CTL_SaveSupport"/>
+                <attr name="injectable" stringvalue="org.cvut.vrchlpet.MFileType.SaveSupport"/>
+                <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.context"/>
+                <attr name="noIconInMenu" boolvalue="false"/>
+                <attr name="selectionType" stringvalue="EXACTLY_ONE"/>
+                <attr name="type" stringvalue="org.openide.loaders.DataObject"/>
+            </file>
+        </folder>
+    </folder>
     <folder name="Loaders">
         <folder name="text">
             <folder name="x-mm">
                 <folder name="Actions">
+                    <file name="org-cvut-vrchlpet-MFileType-SaveSupport-separatorAfter.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                        <attr name="position" intvalue="287"/>
+                    </file>
+                    <file name="org-cvut-vrchlpet-MFileType-SaveSupport-separatorBefore.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                        <attr name="position" intvalue="162"/>
+                    </file>
+                    <file name="org-cvut-vrchlpet-MFileType-SaveSupport.shadow">
+                        <attr name="originalFile" stringvalue="Actions/File/org-cvut-vrchlpet-MFileType-SaveSupport.instance"/>
+                        <attr name="position" intvalue="225"/>
+                    </file>
                     <file name="org-openide-actions-DeleteAction.shadow">
                         <attr name="originalFile" stringvalue="Actions/Edit/org-openide-actions-DeleteAction.instance"/>
                         <attr name="position" intvalue="600"/>

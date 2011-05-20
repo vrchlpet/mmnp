@@ -15,13 +15,21 @@ import org.openide.nodes.Node;
 import org.openide.nodes.Children;
 import org.openide.util.Lookup;
 
+
+    /**
+     *
+     * Trida, reprezentujici data typu ".mm"/".MM" a akce pro otevreni metamodelu v editoru
+     *
+     * @author Vrchlavsky Petr
+     * @version 1.0
+     */
 public class MMDataObject extends MultiDataObject {
 
     public MMDataObject(FileObject pf, MultiFileLoader loader) throws DataObjectExistsException, IOException {
         super(pf, loader);
         CookieSet cookies = getCookieSet();
-        cookies.add((Node.Cookie) new MMOpenSupport(getPrimaryEntry()));
-        cookies.add((Node.Cookie) new ModelData(pf.getPath()));
+        cookies.add((Node.Cookie) new MMOpenSupport(getPrimaryEntry()));// podpora otevreni metamodelu v editoru
+        cookies.add((Node.Cookie) new ModelData(pf.getPath())); // zabalena data - serializer pro nahrani metamodelu + samotny metamodel
 
     }
 

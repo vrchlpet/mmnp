@@ -3,6 +3,8 @@ package org.cvut.vrchlpet.MCore.visualization;
 
 /**
  *
+ * Trida reprezentujici obecny popisek
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
@@ -13,8 +15,13 @@ public class Label {
     public static final boolean DEFAULT_EDITABLE = true;
     public static final String DEFAULT_TEXT = "default label text";
 
+    // pohyblivost
     private boolean movable;
+
+    // editovatelnost
     private boolean editable;
+
+    // text
     private String text;
 
     public Label () {

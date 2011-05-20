@@ -52,7 +52,7 @@ public class PropertyNode extends MAbstractNode implements PropertyChangeListene
     @Override
     protected Sheet createSheet() {
 
-        ArrayList<PropertySupport.Reflection> props = new ArrayList<PropertySupport.Reflection>();
+        ArrayList<PropertySupport.Reflection<? extends Object>> props = new ArrayList<PropertySupport.Reflection<? extends Object>>();
         
         org.cvut.vrchlpet.MCore.core.Property property = getLookup().lookup(
                 org.cvut.vrchlpet.MCore.core.Property.class);

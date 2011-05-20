@@ -2,12 +2,14 @@
 
 package org.cvut.vrchlpet.MCore.model;
 
-import java.util.ArrayList;
+
 import java.util.Date;
 import org.cvut.vrchlpet.MCore.core.Model;
 import org.cvut.vrchlpet.MCore.util.Notifyer;
 
 /**
+ *
+ * Implementace modelu
  *
  * @author Vrchlavsky Petr
  * @version 1.0
@@ -20,7 +22,6 @@ public class MModel extends Notifyer implements IMModel{
     private IModelInfo info;
 
     
-    public MModel() {}
     
     public MModel(IModelBuilder builder, IModelInfo info) {
         this.builder = builder;

@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 import org.cvut.vrchlpet.MEditor.controller.IMasterController;
-import org.cvut.vrchlpet.MCore.core.MetaObject;
+import org.cvut.vrchlpet.MCore.core.NamedElement;
 import org.openide.windows.WindowManager;
 
 /**
@@ -19,9 +19,9 @@ import org.openide.windows.WindowManager;
 public class ChangeDescriptionNodeAction extends AbstractAction{
 
     private IMasterController controller;
-    private MetaObject obj;
+    private NamedElement obj;
 
-    public ChangeDescriptionNodeAction(IMasterController controller, MetaObject obj) {
+    public ChangeDescriptionNodeAction(IMasterController controller, NamedElement obj) {
         this.controller = controller;
         this.obj = obj;
         putValue (NAME, "Change description");

@@ -5,18 +5,23 @@
 
 package org.cvut.vrchlpet.MCore.visualization.ui;
 
-import org.cvut.vrchlpet.MCore.core.MetaObject;
+import org.cvut.vrchlpet.MCore.core.NamedElement;
 import org.cvut.vrchlpet.MCore.core.Relation;
 import org.cvut.vrchlpet.MCore.visualization.ConnectionVisualization;
 
 /**
+ *
+ * UI rozhrani pro relace
  *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
 public class RelationUI extends CommonMetaObjectUI{
 
+    // prirazena relace
     private Relation relation;
+
+    // specifikace visualizace
     private ConnectionVisualization visualization;
 
     public RelationUI() {}
@@ -47,7 +52,7 @@ public class RelationUI extends CommonMetaObjectUI{
     }
 
     @Override
-    public void installUI(MetaObject obj) {
+    public void installUI(NamedElement obj) {
         if ( obj instanceof Relation) {
             this.relation = (Relation) obj;
             obj.setUi(this);
@@ -55,7 +60,7 @@ public class RelationUI extends CommonMetaObjectUI{
     }
 
     @Override
-    public void uninstallUI(MetaObject obj) {
+    public void uninstallUI(NamedElement obj) {
         if ( obj instanceof Relation)
             if ( obj.getUi() == this) {
                 obj.setUi(null);

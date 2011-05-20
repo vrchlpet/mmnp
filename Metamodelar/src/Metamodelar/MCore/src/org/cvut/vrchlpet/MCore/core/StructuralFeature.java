@@ -7,6 +7,8 @@ import org.cvut.vrchlpet.MCore.util.Notifyer;
 
 /**
  *
+ * Trida reprezentuje metadata vlastnosti elementu
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  * 
@@ -14,8 +16,8 @@ import org.cvut.vrchlpet.MCore.util.Notifyer;
 public class StructuralFeature extends Notifyer {
 
     public static final boolean DEFAULT_EDITABLE = true;
-    public static final int DEFAULT_LOWER_BOUND = 0;
-    public static final int DEFAULT_UPPER_BOUND = -1;
+    public static final int DEFAULT_LOWER_BOUND = 1;
+    public static final int DEFAULT_UPPER_BOUND = 1;
     public static final String DEFAULT_STRUCTURAL_FEATURE_NAME = "defualt structural feature name";
 
     public static final String EDITABLE_CHANGED = "editable_ch";
@@ -24,9 +26,16 @@ public class StructuralFeature extends Notifyer {
     public static final String NAME_CHANGED = "name_ch";
     
 
+    // editovatelnost
     private boolean editable;
+
+    // dolni hranice vyskytu
     private int lowerBound;
+
+    // horni hranice vyskytu
     private int upperBound;
+
+    // jmeno
     private String name;
     
 

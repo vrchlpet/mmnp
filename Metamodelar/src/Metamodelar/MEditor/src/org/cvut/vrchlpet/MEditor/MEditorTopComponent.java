@@ -4,11 +4,13 @@
  */
 package org.cvut.vrchlpet.MEditor;
 
+import java.io.File;
 import java.util.logging.Logger;
 import org.cvut.vrchlpet.MEditor.controller.IMasterController;
 import org.cvut.vrchlpet.MEditor.controller.MasterController;
 import org.cvut.vrchlpet.MCore.model.IMModel;
 import org.cvut.vrchlpet.MCore.util.Info;
+import org.cvut.vrchlpet.MEditor.actions.SaveSupport;
 import org.cvut.vrchlpet.MEditor.nodes.GeneralModelNode;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
@@ -17,6 +19,10 @@ import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.ExplorerUtils;
 import org.openide.explorer.view.BeanTreeView;
+import org.openide.util.lookup.AbstractLookup;
+import org.openide.util.lookup.InstanceContent;
+import org.openide.util.lookup.Lookups;
+import org.openide.util.lookup.ProxyLookup;
 import org.openide.windows.CloneableTopComponent;
 
 /**
@@ -31,11 +37,16 @@ public final class MEditorTopComponent extends CloneableTopComponent implements 
 //    static final String ICON_PATH = "SET/PATH/TO/ICON/HERE";
     private static final String PREFERRED_ID = "MEditorTopComponent";
 
+    private SaveSupport saveImpl;
+    private InstanceContent content;
+
+    private final ExplorerManager mgr = new ExplorerManager();
+
     public MEditorTopComponent() {
         initComponents();
         associateLookup (ExplorerUtils.createLookup(mgr, getActionMap()));
         IMModel model = Info.createRandomModel();
-        IMasterController controller = new MasterController(model);
+        IMasterController controller = new MasterController(model, "" + File.pathSeparatorChar);
         IMasterEditorManager manager = new MasterEditorManager(model, controller);
         mgr.setRootContext(new GeneralModelNode(manager));
 
@@ -43,7 +54,12 @@ public final class MEditorTopComponent extends CloneableTopComponent implements 
 
     public MEditorTopComponent(IMasterEditorManager manager) {
         initComponents();
-        associateLookup (ExplorerUtils.createLookup(mgr, getActionMap()));
+        content = new InstanceContent();
+
+        saveImpl = new SaveSupport(manager);
+        content.add(saveImpl);
+        //associateLookup (ExplorerUtils.createLookup(mgr, getActionMap()));
+        associateLookup (new ProxyLookup(ExplorerUtils.createLookup(mgr, getActionMap()), new AbstractLookup(content)));
         mgr.setRootContext(new GeneralModelNode(manager));
     }
 
@@ -135,7 +151,7 @@ public final class MEditorTopComponent extends CloneableTopComponent implements 
         return PREFERRED_ID;
     }
 
-    private final ExplorerManager mgr = new ExplorerManager();
+    
 
     @Override
     public ExplorerManager getExplorerManager() {

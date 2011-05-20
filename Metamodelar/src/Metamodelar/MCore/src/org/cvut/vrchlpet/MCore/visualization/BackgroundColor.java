@@ -5,6 +5,8 @@ import java.awt.Color;
 
 /**
  *
+ * Barva pozadi elementu
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */

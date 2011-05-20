@@ -53,15 +53,15 @@ public class RelationNode extends MAbstractNode implements PropertyChangeListene
 
         RelationAdapter relA = new RelationAdapter(getLookup().lookup(Relation.class),controller);
 
-        Property property1 = null;
-        Property property2 = null;
-        Property property3 = null;
+        PropertySupport.Reflection<Boolean> property1 = null;
+        PropertySupport.Reflection<String> property2 = null;
+        PropertySupport.Reflection<String> property3 = null;
         try {
-            property1 = new PropertySupport.Reflection(relA, boolean.class, "symmetric");
-            property2 = new PropertySupport.Reflection(relA, String.class, "description");
-            property3 = new PropertySupport.Reflection(relA, String.class, "nameSpace");
+            property1 = new PropertySupport.Reflection<Boolean>(relA, boolean.class, "symmetric");
+            property2 = new PropertySupport.Reflection<String>(relA, String.class, "description");
+            property3 = new PropertySupport.Reflection<String>(relA, String.class, "nameSpace");
             
-            PropertySupport.Reflection property4 = new PropertySupport.Reflection(relA,
+            PropertySupport.Reflection<Boolean> property4 = new PropertySupport.Reflection<Boolean>(relA,
                 boolean.class, "container");
             set.put(property4);
             property4.setName("container");

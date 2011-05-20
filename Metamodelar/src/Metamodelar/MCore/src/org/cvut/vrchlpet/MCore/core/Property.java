@@ -7,12 +7,17 @@ package org.cvut.vrchlpet.MCore.core;
 
 /**
  *
+ * Trida reprezentuje vlastnost elementu
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
 public class Property extends StructuralFeature{
 
+    // datovy typ
     private MData mData;
+
+    // data
     private Object value;
 
 

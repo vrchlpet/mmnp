@@ -4,11 +4,15 @@ package org.cvut.vrchlpet.MCore.visualization;
 
 /**
  *
+ * Popisek elementu
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
 public class ElementLabel extends Label{
 
+
+    // pozice popisku elementu
     private Position position;
 
     

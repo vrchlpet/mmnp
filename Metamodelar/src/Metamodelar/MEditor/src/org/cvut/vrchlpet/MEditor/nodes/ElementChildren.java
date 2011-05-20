@@ -29,7 +29,7 @@ public class ElementChildren extends Children.Keys<Element>{
 
     @Override
     protected Node[] createNodes(Element o) {
-        Element obj = (Element) o;
+        Element obj = o;
         ElementNode elnode = new ElementNode(obj, this, this.controller);
         return new Node[] { elnode };
     }

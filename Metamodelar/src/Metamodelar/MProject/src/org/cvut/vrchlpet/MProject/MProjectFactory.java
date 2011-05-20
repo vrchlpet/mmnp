@@ -14,6 +14,8 @@ import org.openide.filesystems.FileObject;
 
 /**
  *
+ * Trida se stara o nahrani/vytvoreni projektu
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
@@ -22,22 +24,20 @@ public class MProjectFactory implements ProjectFactory {
 
     public static final String PROJECT_DIR = "texts";
 
-    //Specifies when a project is a project, i.e.,
-    //if the project directory "texts" is present:
+    // rozhodne. zda se jedna o projekt
     @Override
     public boolean isProject(FileObject projectDirectory) {
         
         for ( FileObject fn : projectDirectory.getChildren()) {
             String path = fn.getPath();
-            if ( fn.isData() && fn.getPath().endsWith(".mm"))
+            if ( fn.isData() && (fn.getPath().endsWith(".mm") || fn.getPath().endsWith(".MM")))
                 return true;
         }
         
         return false;
     }
 
-    //Specifies when the project will be opened, i.e.,
-    //if the project exists:
+    // rozhodne, zda se jedna o projekt na zaklade parametru dir
     @Override
     public Project loadProject(FileObject dir, ProjectState state) throws IOException {
         if ( isProject(dir))

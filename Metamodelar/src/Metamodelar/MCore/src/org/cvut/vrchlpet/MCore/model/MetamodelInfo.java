@@ -12,9 +12,10 @@ import org.cvut.vrchlpet.MCore.core.Model;
 import org.cvut.vrchlpet.MCore.core.Property;
 import org.cvut.vrchlpet.MCore.core.Reference;
 import org.cvut.vrchlpet.MCore.core.Relation;
-import org.cvut.vrchlpet.MCore.model.IMModel;
 
 /**
+ *
+ * Implementace ModelInfo rozhrani pro meta-modelovani
  *
  * @author Vrchlavsky Petr
  * @version 1.0

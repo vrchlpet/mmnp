@@ -60,16 +60,16 @@ public class ElementNode extends MAbstractNode implements PropertyChangeListener
 
         Element el = getLookup().lookup(Element.class);
 
-        Property property3 = null;
-        Property property2 = null;
-        Property property1 = null;
+        PropertySupport.Reflection<String> property3 = null;
+        PropertySupport.Reflection<String> property2 = null;
+        PropertySupport.Reflection<String> property1 = null;
         try {
-            property2 = new PropertySupport.Reflection(el, String.class, "description");
-            property3 = new PropertySupport.Reflection(el, String.class, "getNameSpace", null);
+            property2 = new PropertySupport.Reflection<String>(el, String.class, "description");
+            property3 = new PropertySupport.Reflection<String>(el, String.class, "getNameSpace", null);
             set.put(property3);
             property3.setName("namespace");
             if ( el.getSuperElement() != null) {
-                property1 = new PropertySupport.Reflection(el.getSuperElement(), String.class, "getNameSpace", null);
+                property1 = new PropertySupport.Reflection<String>(el.getSuperElement(), String.class, "getNameSpace", null);
                 set.put(property1);
                 property1.setName("super type");
             }

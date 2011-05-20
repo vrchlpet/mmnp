@@ -6,14 +6,14 @@ import java.util.ArrayList;
 
 /**
  *
+ * Manager vizualizace elementu
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
-public class ElementVisualization implements IVisualization {
+public class ElementVisualization {
 
-    public static final String DEFAULT_GROUP_NAME = "element visual manager groupname";
-
-    private String groupName;
+    
     private MBorder border;
     private BackgroundColor backgroundColor;
     private BackgroundImage backgroundImage;
@@ -21,33 +21,12 @@ public class ElementVisualization implements IVisualization {
 
 
     public ElementVisualization() {
-        this.groupName = DEFAULT_GROUP_NAME;
         this.border = null;
         this.backgroundColor = null;
         this.backgroundImage = null;
         this.labels = new ArrayList<ElementLabel>();
     }
 
-    public ElementVisualization(String name) {
-        this();
-        this.groupName = name;
-    }
-
-
-    /**
-     * @return the groupName
-     */
-    @Override
-    public String getName() {
-        return groupName;
-    }
-
-    /**
-     * @param groupName the groupName to set
-     */
-    public void setName(String name) {
-        this.groupName = name;
-    }
 
     /**
      * @return the border

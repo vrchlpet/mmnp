@@ -2,7 +2,7 @@
 
 package org.cvut.vrchlpet.MCore.visualization;
 
-import java.awt.Image;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import org.cvut.vrchlpet.MCore.visualization.ui.ImageLoader;
@@ -10,6 +10,8 @@ import org.cvut.vrchlpet.MCore.visualization.ui.ImageLoader;
 
 
 /**
+ *
+ * Obrazek elementu
  *
  * @author Vrchlavsky Petr
  * @version 1.0

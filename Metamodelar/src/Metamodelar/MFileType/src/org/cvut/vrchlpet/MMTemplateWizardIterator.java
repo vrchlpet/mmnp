@@ -34,6 +34,15 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+
+
+    /**
+     *
+     * Generovana trida vyuzita pri tvorbe noveho metamodelu
+     *
+     * @author Vrchlavsky Petr
+     * @version 1.0
+     */
 public class MMTemplateWizardIterator implements WizardDescriptor./*Progress*/InstantiatingIterator {
 
     private int index;

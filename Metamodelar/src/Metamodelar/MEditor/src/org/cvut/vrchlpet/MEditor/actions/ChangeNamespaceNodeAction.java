@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 import org.cvut.vrchlpet.MEditor.controller.IMasterController;
-import org.cvut.vrchlpet.MCore.core.MetaObject;
+import org.cvut.vrchlpet.MCore.core.NamedElement;
 import org.cvut.vrchlpet.MEditor.dialogs.DialogMessagesManager;
 import org.openide.windows.WindowManager;
 
@@ -20,9 +20,9 @@ import org.openide.windows.WindowManager;
 public class ChangeNamespaceNodeAction extends AbstractAction{
 
     private IMasterController controller;
-    private MetaObject obj;
+    private NamedElement obj;
 
-    public ChangeNamespaceNodeAction(IMasterController controller, MetaObject obj) {
+    public ChangeNamespaceNodeAction(IMasterController controller, NamedElement obj) {
         this.controller = controller;
         this.obj = obj;
         putValue (NAME, "Change namespace");

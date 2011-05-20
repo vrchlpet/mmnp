@@ -26,4 +26,6 @@ public interface IMasterController {
     public IModelManager getModelManager();
     public IMetaObjectManager getMetaObjectManager();
     public IStructuralFeatureManager getStructuralFeatureManager();
+
+    public String getModelPath();
 }

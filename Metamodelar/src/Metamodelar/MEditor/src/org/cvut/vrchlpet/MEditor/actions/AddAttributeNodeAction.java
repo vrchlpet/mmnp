@@ -33,7 +33,7 @@ public class AddAttributeNodeAction extends AbstractAction{
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        String s = (String)JOptionPane.showInputDialog("Type in the name of the new attribute");
+        String s = JOptionPane.showInputDialog("Type in the name of the new attribute");
         if (  s == null)
             return;
         

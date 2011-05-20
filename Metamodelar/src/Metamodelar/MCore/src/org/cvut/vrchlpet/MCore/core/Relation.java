@@ -6,23 +6,32 @@ import org.cvut.vrchlpet.MCore.visualization.ui.RelationUI;
 
 /**
  *
+ * Trida reprezentuje relaci
+ *
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
-public class Relation extends MetaObject{
+public class Relation extends NamedElement{
 
     public static final boolean DEFAULT_SYMETRIC = false;
     public static final String SYMMETRIC_CHANGED = "symm_ch";
     public static final boolean DEFAULT_CONTAINER = false;
     public static final String CONTAINER_CH = "container_ch";
 
+
+    // definice symetrie
     private boolean symmetric;
 
+
+    // indikator, zda je relace typu kontejner/cast kontejneru. Pokud ano, pak reference,
+    // ktera vystupuje jako zdrojova je  povazovana za kontejner a reference, ktera
+    // vystupuje jako cilova je povazvana za cast kontejneru
     private boolean container;
 
     public Relation() {
         this.symmetric = DEFAULT_SYMETRIC;
-        RelationUI relationUI = new RelationUI(this);
+        RelationUI relationUI = new RelationUI(this); // graficky kontext relace
         this.container = DEFAULT_CONTAINER;
     }
 

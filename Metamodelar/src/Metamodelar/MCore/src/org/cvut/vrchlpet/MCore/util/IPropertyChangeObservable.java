@@ -6,6 +6,8 @@ import java.beans.PropertyChangeListener;
 
 /**
  *
+ * Rozhrani pro spravce posluchacu typu PropertyChange
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */

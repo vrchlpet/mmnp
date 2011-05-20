@@ -4,12 +4,14 @@
  */
 package org.cvut.vrchlpet.MFileType;
 
-import java.io.IOException;
 import javax.swing.JOptionPane;
 import org.cvut.vrchlpet.MCore.model.IMModel;
+import org.cvut.vrchlpet.MCore.util.Serializer;
 import org.openide.nodes.Node.Cookie;
-import org.openide.util.Exceptions;
 /**
+ *
+ * Trida, ktera je vyuzita pri nahrani metamodelu z vnejsi pameti.
+ * po nahrani je vracena instance metamodelu.
  *
  * @author Vrchlavsky Petr
  * @version 1.0

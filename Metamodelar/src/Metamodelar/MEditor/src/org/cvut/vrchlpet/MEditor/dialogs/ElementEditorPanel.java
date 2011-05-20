@@ -329,7 +329,7 @@ public class ElementEditorPanel extends javax.swing.JPanel implements PropertyCh
         Object s = e.getSource();
 
         if ( s == btAddAtt) {
-            String name = (String)JOptionPane.showInputDialog("Type in the name of the new attribute");
+            String name = JOptionPane.showInputDialog("Type in the name of the new attribute");
             if ( name == null || name.length() == 0) {
                 DialogMessagesManager.showErrorDialog("Empty name!");
                 return;

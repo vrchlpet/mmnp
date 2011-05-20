@@ -14,9 +14,13 @@ import org.openide.WizardValidationException;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 
-/**
- * Panel just asking for basic info.
- */
+    /**
+     *
+     * Generovana trida, skutecny panel, ktery vidime v dialogu pro tvorbu noveho metamodelu
+     *
+     * @author Vrchlavsky Petr
+     * @version 1.0
+     */
 public class MMTemplateWizardPanel implements WizardDescriptor.Panel,
         WizardDescriptor.ValidatingPanel, WizardDescriptor.FinishablePanel {
 

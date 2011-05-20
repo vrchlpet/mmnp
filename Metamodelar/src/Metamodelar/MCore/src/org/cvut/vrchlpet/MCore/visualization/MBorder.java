@@ -4,6 +4,8 @@ package org.cvut.vrchlpet.MCore.visualization;
 
 /**
  *
+ * Ohraniceni elementu
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
@@ -12,7 +14,10 @@ public class MBorder {
     public static final boolean DEFAULT_RESIZABLE = false;
     public static final boolean DEFAULT_VISIBLE = true;
 
+    // roztazitelnost
     private boolean resizable;
+
+    // viditelnost
     private boolean visible;
     
     public MBorder() {

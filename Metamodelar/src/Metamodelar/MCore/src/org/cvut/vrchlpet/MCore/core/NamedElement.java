@@ -8,10 +8,12 @@ import org.cvut.vrchlpet.MCore.visualization.ui.CommonMetaObjectUI;
 
 /**
  *
+ * Hlavicka meta-objektu
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
-public abstract class MetaObject extends Notifyer{
+public abstract class NamedElement extends Notifyer{
 
     public static final String NAMESPACE_CHANGED = "ns_ch";
     public static final String DESCRIPTION_CHANGED = "des_ch";
@@ -23,14 +25,15 @@ public abstract class MetaObject extends Notifyer{
     public static final String DEFAULT_NAMESPACE = "empty namespace";
     public static final String DEFAULT_DESCRIPTION = "empty description";
 
+    // graficka reprezentace meta-objektu - bod, kde se spojuje vrsva meta-meta-modelu a vizualizace
     protected CommonMetaObjectUI ui;
 
-    public MetaObject() {
+    public NamedElement() {
         this.nameSpace = DEFAULT_NAMESPACE;
         this.description = DEFAULT_DESCRIPTION;
     }
 
-    public MetaObject(String namseSpace, String description) {
+    public NamedElement(String namseSpace, String description) {
         this();
         this.nameSpace = namseSpace;
         this.description = description;

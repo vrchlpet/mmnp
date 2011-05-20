@@ -13,9 +13,11 @@ import org.cvut.vrchlpet.MCore.model.IMModel;
 public class MasterController implements IMasterController{
 
     private IMModel model;
+    private String modelPath;
 
-    public MasterController(IMModel model) {
+    public MasterController(IMModel model, String modelPath) {
         this.model = model;
+        this.modelPath = modelPath;
     }
 
     @Override
@@ -61,5 +63,10 @@ public class MasterController implements IMasterController{
     @Override
     public IStructuralFeatureManager getStructuralFeatureManager() {
         return new StructuralFeatureManager();
+    }
+
+    @Override
+    public String getModelPath() {
+        return this.modelPath;
     }
 }

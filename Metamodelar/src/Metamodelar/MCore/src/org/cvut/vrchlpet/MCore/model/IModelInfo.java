@@ -8,9 +8,10 @@ import org.cvut.vrchlpet.MCore.core.Element;
 import org.cvut.vrchlpet.MCore.core.Property;
 import org.cvut.vrchlpet.MCore.core.Reference;
 import org.cvut.vrchlpet.MCore.core.Relation;
-import org.cvut.vrchlpet.MCore.model.IMModel;
 
 /**
+ *
+ * Rozhrani definuje informacni sluzbu modelu
  *
  * @author Vrchlavsky Petr
  * @version 1.0

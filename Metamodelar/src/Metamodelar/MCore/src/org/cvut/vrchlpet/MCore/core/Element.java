@@ -8,6 +8,8 @@ import org.cvut.vrchlpet.MCore.visualization.ui.ElementUI;
 
 /**
  *
+ * Trida reprezentuje meta-objekt
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
@@ -25,8 +27,13 @@ public class Element extends ReferenceableObject{
             + " concrete entity with references to other entities.";
 
 
+    // predek (dedeni)
     private Element superElement;
+
+    // vlastnosti
     private ArrayList<Attribute> attributes;
+
+    // kontejner meta-objektu
     private Model model;
 
     public Element() {
@@ -36,7 +43,7 @@ public class Element extends ReferenceableObject{
         setNameSpace(DEFAULT_ELEMENT_NAMESPACE);
         setDescription(DEFAULT_ELEMENT_DESCRIPTION);
         this.attributes = new ArrayList<Attribute>();
-        ElementUI elementUI = new ElementUI(this);//instaluje se automaticky
+        ElementUI elementUI = new ElementUI(this); // instalace graficke reprezentace pro elementy
     }
 
     public Element(Model model) {
@@ -102,7 +109,7 @@ public class Element extends ReferenceableObject{
      */
     public boolean setSuperElement(Element superElement) {
 
-        // kontrola, jestli nedojde k zacykleni
+        // kontrola, jestli nedojde k zacykleni dedicnosti
         if ( superElement != null)
             for (Element el : superElement.getAllSuperElements()) {
                 if ( el == this)

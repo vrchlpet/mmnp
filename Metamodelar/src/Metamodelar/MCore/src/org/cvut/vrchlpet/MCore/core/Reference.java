@@ -6,6 +6,8 @@ import org.cvut.vrchlpet.MCore.util.Notifyer;
 
 /**
  *
+ * Trida reprezentuje referenci - jednu stranu relace - pripojny bod elementu k relaci a protejsimu alementu samotnemu
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
@@ -29,16 +31,34 @@ public class Reference extends Notifyer{
     public static final String OPPOSITE_CH = "opp_ch";
 
 
+    // dolni hranice vyskity
     private int lowerBound;
+
+    // horni hranice vyskytu
     private int upperBound;
+
+    // viditelnost reference
     private boolean visible;
+
+    // indikace, zda je reference zdrojova nebo cilova
     private boolean source;
+
+    // vlastnik reference
     private ReferenceableObject owner;
+
+    // ukazatel na vlastnika protejsi reference
     private ReferenceableObject referenceType;
+
+    // protejsi reference
     private Reference opposite;
+
+    // relace, ktere je tato reference soucasti
     private Relation relation;
-    
+
+    // id reference - prevazne ze serializacnich duvodu
     private long id;
+
+    // viz. id
     private static long counter = 0;
 
     public Reference() {}

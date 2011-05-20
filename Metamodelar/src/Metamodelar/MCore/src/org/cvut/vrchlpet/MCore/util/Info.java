@@ -24,6 +24,8 @@ import org.cvut.vrchlpet.MCore.visualization.ui.ElementUI;
 
 /**
  *
+ * Trida pouzita pro testovaci ucely
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */

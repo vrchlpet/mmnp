@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 /**
  *
+ * Trida reprezentujici kontejner pro vlastnosti elementu
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
@@ -16,11 +18,12 @@ public class Attribute extends StructuralFeature{
     public static final String PROPERTY_REMOVED = "prop_rm";
     public static final String PROPERTY_ADDED = "prop_add";
 
+
+    // skutecne vlastnosti
     private ArrayList<Property> properties;
+
+    // kontener atributu
     private Element element;
-
-
-    public Attribute() {}
     
     public Attribute(Element el) {
         this.properties = new ArrayList<Property>();

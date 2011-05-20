@@ -630,8 +630,8 @@ public class ElementUIPanel extends javax.swing.JPanel implements ActionListener
             extentions.add(".PNG");
             extentions.add(".bmp");
             extentions.add(".BMP");
-            extentions.add(".gif");
-            extentions.add(".GIF");
+            //extentions.add(".gif");
+            //extentions.add(".GIF");
             //extentions.add(".svg");
             //extentions.add(".SVG");
 

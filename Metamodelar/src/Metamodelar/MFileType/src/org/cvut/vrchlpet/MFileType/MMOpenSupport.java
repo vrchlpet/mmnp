@@ -37,7 +37,7 @@ class MMOpenSupport extends OpenSupport implements OpenCookie, CloseCookie {
         MMDataObject dobj = (MMDataObject) entry.getDataObject();
         
         IMModel model = (dobj.getCookie(ModelData.class)).getMetamodel();
-        IMasterController controller = new MasterController(model);
+        IMasterController controller = new MasterController(model, dobj.getPrimaryFile().getPath());
         IMasterEditorManager editorManager = new MasterEditorManager(model, controller);
         editorManager.getTopComponent().setDisplayName(dobj.getName());
         topComp = (CloneableTopComponent)editorManager.getTopComponent();

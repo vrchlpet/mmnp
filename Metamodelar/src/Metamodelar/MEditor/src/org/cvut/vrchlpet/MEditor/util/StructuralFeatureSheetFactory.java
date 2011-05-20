@@ -21,7 +21,7 @@ public class StructuralFeatureSheetFactory {
     
     public static Sheet getSheet(StructuralFeature sf, 
             IMasterController controller, 
-            ArrayList<PropertySupport.Reflection> properties) {
+            ArrayList<PropertySupport.Reflection<? extends Object>> properties) {
         
         
         Sheet sheet = Sheet.createDefault();
@@ -32,27 +32,27 @@ public class StructuralFeatureSheetFactory {
         StructuralFeatureAdapter sfa = new StructuralFeatureAdapter(sf, controller);
             
             try {
-                PropertySupport.Reflection editProp = 
-                        new PropertySupport.Reflection(sfa, 
+                PropertySupport.Reflection<Boolean> editProp = 
+                        new PropertySupport.Reflection<Boolean>(sfa, 
                         boolean.class, "editable");
                 set.put(editProp);
                 editProp.setName("editable");
                 
-                PropertySupport.Reflection lowerProp = 
-                        new PropertySupport.Reflection(sfa, 
+                PropertySupport.Reflection<Integer> lowerProp = 
+                        new PropertySupport.Reflection<Integer>(sfa, 
                         int.class, "lowerBound");
                 set.put(lowerProp);
                 lowerProp.setName("lower bound");
                 
-                PropertySupport.Reflection upperProp = 
-                        new PropertySupport.Reflection(sfa, 
+                PropertySupport.Reflection<Integer> upperProp = 
+                        new PropertySupport.Reflection<Integer>(sfa, 
                         int.class, "upperBound");
                 set.put(upperProp);
                 upperProp.setName("upper bound");
                 
                 
                 if ( properties != null)
-                    for ( PropertySupport.Reflection psr : properties) {
+                    for ( PropertySupport.Reflection<? extends Object> psr : properties) {
                         set.put(psr);
                     }
                 

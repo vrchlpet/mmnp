@@ -1,4 +1,4 @@
-package org.cvut.vrchlpet.MFileType;
+package org.cvut.vrchlpet.MCore.util;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -26,7 +26,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.cvut.vrchlpet.MCore.core.Attribute;
 import org.cvut.vrchlpet.MCore.core.MData;
-import org.cvut.vrchlpet.MCore.core.MetaObject;
+import org.cvut.vrchlpet.MCore.core.NamedElement;
 import org.cvut.vrchlpet.MCore.core.Property;
 import org.cvut.vrchlpet.MCore.core.Reference;
 import org.cvut.vrchlpet.MCore.core.Relation;
@@ -43,7 +43,6 @@ import org.cvut.vrchlpet.MCore.visualization.ConnectionLabel;
 import org.cvut.vrchlpet.MCore.visualization.ConnectionLabelPosition;
 import org.cvut.vrchlpet.MCore.visualization.ElementLabel;
 import org.cvut.vrchlpet.MCore.visualization.Layout;
-import org.cvut.vrchlpet.MCore.visualization.LineStyle;
 import org.cvut.vrchlpet.MCore.visualization.MBorder;
 import org.cvut.vrchlpet.MCore.visualization.ui.ElementUI;
 import org.cvut.vrchlpet.MCore.visualization.ui.ImageLoader;
@@ -56,18 +55,20 @@ import org.w3c.dom.Text;
 
 /**
  *
+ * Trida starajici se o serializaci - vychazi s aktualni podoby jadra metamodelare
+ * Serializer je koncipovan jako singleton s globalnim pristupem
+ *
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
 public class Serializer {
 
     private static Serializer instance = null;
-    private static final String IMG_DIR = "images";
     private static final String METAMODEL_DATA = "metamodel.data";
 
-    private Serializer() {
-    }
 
+    // singleton
     public static Serializer createSerializer() {
         if (instance == null) {
             instance = new Serializer();
@@ -76,7 +77,7 @@ public class Serializer {
         return Serializer.instance;
     }
 
-    
+    // vrati vstupni proud pro konretni polozku v zip archivu
     private ZipInputStream getInputStream(String path, String name) throws FileNotFoundException, IOException {
         File f = new File(path);
         FileInputStream fis = new FileInputStream(f);
@@ -89,7 +90,8 @@ public class Serializer {
         }
         return null;
     }
-    
+
+    // nahrani metamodelu do pameti z urceneho mista
     public IMModel deserialize(String path) throws Exception {
 
         
@@ -127,8 +129,6 @@ public class Serializer {
                 RelationUI rui = (RelationUI) rel.getUi();
                 if (ui.item(0) != null) {
                     Element eui = (Element) ui.item(0);
-                    Element lineStyle = (Element) eui.getElementsByTagName("lineStyle").item(0);
-                    rui.getVisualization().setLineStyle(LineStyle.valueOf(lineStyle.getAttribute("style")));
                     Element arrowShape = (Element) eui.getElementsByTagName("arrowShape").item(0);
                     rui.getVisualization().setReferenceSourceArrow(ArrowShape.valueOf(arrowShape.getAttribute("source")));
                     rui.getVisualization().setReferenceTargetArrow(ArrowShape.valueOf(arrowShape.getAttribute("target")));
@@ -339,6 +339,8 @@ public class Serializer {
         return model;
     }
 
+
+    // ulozeni metamodelu na konkretni misto
     public void serialize(IMModel model, String path) throws Exception {
 
         FileOutputStream dest = new FileOutputStream(path);
@@ -412,9 +414,6 @@ public class Serializer {
                     elabel.setAttribute("labelPosition", l.getConnectionLabelPosition().toString());
                 }
             }
-            Element eLineStile = doc.createElement("lineStyle");
-            eui.appendChild(eLineStile);
-            eLineStile.setAttribute("style", rui.getVisualization().getLineStyle().toString());
             Element eArrowShape = doc.createElement("arrowShape");
             eui.appendChild(eArrowShape);
             eArrowShape.setAttribute("source", rui.getVisualization().getReferenceSourceArrow().toString());
@@ -453,7 +452,7 @@ public class Serializer {
             if (bi != null) {
                 
                 String name = bi.getImgName();
-                if ( !name.startsWith(element.getNameSpace()));
+                if ( !name.startsWith(element.getNameSpace()))
                     name = element.getNameSpace() + "_" + bi.getImgName();
                 
                 bi.setImgName(name);
@@ -576,7 +575,7 @@ public class Serializer {
         return e;
     }
 
-    private void appendMetaObjectData(MetaObject obj, Element el) {
+    private void appendMetaObjectData(NamedElement obj, Element el) {
         el.setAttribute("nameSpace", obj.getNameSpace());
         el.setAttribute("description", obj.getDescription());
     }

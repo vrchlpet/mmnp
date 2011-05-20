@@ -28,7 +28,7 @@ public class PropertyChildren extends Children.Keys<Property>{
 
     @Override
     protected Node[] createNodes(Property o) {
-        Property obj = (Property) o;
+        Property obj = o;
         return new Node[] { new PropertyNode(obj, this.controller) };
     }
 

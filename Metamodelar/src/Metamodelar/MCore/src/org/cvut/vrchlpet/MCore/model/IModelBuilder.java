@@ -14,9 +14,10 @@ import org.cvut.vrchlpet.MCore.core.Reference;
 import org.cvut.vrchlpet.MCore.core.ReferenceableObject;
 import org.cvut.vrchlpet.MCore.core.Relation;
 import org.cvut.vrchlpet.MCore.core.MData;
-import org.cvut.vrchlpet.MCore.model.IMModel;
 
 /**
+ *
+ * Rozhrani, ktere definuje semantiku modelovani/meta-modelovani
  *
  * @author Vrchlavsky Petr
  * @version 1.0

@@ -10,7 +10,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import org.cvut.vrchlpet.MEditor.controller.IMasterController;
 import org.cvut.vrchlpet.MCore.core.Element;
-import org.cvut.vrchlpet.MCore.core.MetaObject;
+import org.cvut.vrchlpet.MCore.core.NamedElement;
 import org.cvut.vrchlpet.MCore.core.Model;
 import org.cvut.vrchlpet.MCore.model.IMModel;
 import org.cvut.vrchlpet.MEditor.actions.ActionFactory;
@@ -55,11 +55,11 @@ public class ModelNode extends MAbstractNode implements PropertyChangeListener{
         Model model = getLookup().lookup(IMModel.class).getModel();
         ModelAdapter ma = new ModelAdapter(controller, model);
         
-        Property property3 = null;
-        Property property2 = null;
+        PropertySupport.Reflection<String> property3 = null;
+        PropertySupport.Reflection<String> property2 = null;
         try {
-            property2 = new PropertySupport.Reflection(ma, String.class, "description");
-            property3 = new PropertySupport.Reflection(ma, String.class, "nameSpace");
+            property2 = new PropertySupport.Reflection<String>(ma, String.class, "description");
+            property3 = new PropertySupport.Reflection<String>(ma, String.class, "nameSpace");
             set.put(property3);
             property3.setName("namespace");
         } catch (NoSuchMethodException ex) {
@@ -76,10 +76,10 @@ public class ModelNode extends MAbstractNode implements PropertyChangeListener{
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if ( MetaObject.NAMESPACE_CHANGED.equals(evt.getPropertyName())) {
+        if ( NamedElement.NAMESPACE_CHANGED.equals(evt.getPropertyName())) {
             setDisplayName((String)evt.getNewValue());
             setSheet(createSheet());
-        } else if ( MetaObject.DESCRIPTION_CHANGED.equals(evt.getPropertyName())) {
+        } else if ( NamedElement.DESCRIPTION_CHANGED.equals(evt.getPropertyName())) {
             setShortDescription((String)evt.getNewValue());
             setSheet(createSheet());
         }

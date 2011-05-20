@@ -2,6 +2,7 @@
 package org.cvut.vrchlpet.MCore.visualization;
 
 /**
+ * Vycet podporovanych tvaru
  *
  * @author Vrchlavsky Petr
  * @version 1.0

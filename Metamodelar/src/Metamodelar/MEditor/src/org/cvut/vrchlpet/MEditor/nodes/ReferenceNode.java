@@ -8,6 +8,7 @@ package org.cvut.vrchlpet.MEditor.nodes;
 import java.awt.Image;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import org.cvut.vrchlpet.MCore.core.NamedElement;
 import org.cvut.vrchlpet.MEditor.controller.IMasterController;
 import org.cvut.vrchlpet.MCore.core.Reference;
 import org.cvut.vrchlpet.MCore.core.Relation;
@@ -31,7 +32,9 @@ public class ReferenceNode extends MAbstractNode implements PropertyChangeListen
         obj.addPropertyChangeListener(this);
         this.addNodeListener(new NodeListenerKiller(obj,this));
         obj.getRelation().addPropertyChangeListener(this);
+        obj.getOpposite().getOwner().addPropertyChangeListener(this);
         this.addNodeListener( new NodeListenerKiller(obj.getRelation(), this));
+        this.addNodeListener( new NodeListenerKiller(obj.getOpposite().getOwner(), this));
         ActionFactory.addActions(obj, this);
         setDisplayName();
     }
@@ -70,27 +73,27 @@ public class ReferenceNode extends MAbstractNode implements PropertyChangeListen
 
 
         try {
-            Property property0 = new PropertySupport.Reflection(ref.getRelation(), String.class, "getNameSpace", null);
+            PropertySupport.Reflection<String> property0 = new PropertySupport.Reflection<String>(ref.getRelation(), String.class, "getNameSpace", null);
 
             set.put(property0);
             property0.setName("relation");
 
-            Property property3 = new PropertySupport.Reflection(ra,
+            PropertySupport.Reflection<Boolean> property3 = new PropertySupport.Reflection<Boolean>(ra,
                 boolean.class, "source");
             set.put(property3);
             property3.setName("source");
 
-            Property property4 = new PropertySupport.Reflection(ra,
+            PropertySupport.Reflection<Integer> property4 = new PropertySupport.Reflection<Integer>(ra,
                 int.class, "lowerBound");
             set.put(property4);
             property4.setName("lower bound");
 
-            Property property5 = new PropertySupport.Reflection(ra,
+            PropertySupport.Reflection<Integer> property5 = new PropertySupport.Reflection<Integer>(ra,
                 int.class, "upperBound");
             set.put(property5);
             property5.setName("upper bound");
 
-            Property property7 = new PropertySupport.Reflection(ra,
+            PropertySupport.Reflection<Boolean> property7 = new PropertySupport.Reflection<Boolean>(ra,
                 boolean.class, "visible");
             set.put(property7);
             property7.setName("visible");
@@ -114,7 +117,8 @@ public class ReferenceNode extends MAbstractNode implements PropertyChangeListen
             this.icon = getIcon();
             fireIconChange();
             fireOpenedIconChange();
-        } else if ( Reference.OPPOSITE_CH.equals(evt.getPropertyName())) {
+        } else if ( Reference.OPPOSITE_CH.equals(evt.getPropertyName()) ||
+                    NamedElement.NAMESPACE_CHANGED.equals(evt.getPropertyName())) {
             setDisplayName();
         }
     }

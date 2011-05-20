@@ -5,19 +5,24 @@
 package org.cvut.vrchlpet.MCore.visualization.ui;
 
 import org.cvut.vrchlpet.MCore.core.Element;
-import org.cvut.vrchlpet.MCore.core.MetaObject;
+import org.cvut.vrchlpet.MCore.core.NamedElement;
 import org.cvut.vrchlpet.MCore.visualization.ElementVisualization;
 
 
 
 /**
  *
+ * UI rozhrani pro elementy
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
 public class ElementUI extends CommonMetaObjectUI{
 
+    // specifikace vizualizace
     private ElementVisualization visualization;
+
+    // prirazeny element
     private Element element;
     
     public ElementUI() {}
@@ -27,7 +32,8 @@ public class ElementUI extends CommonMetaObjectUI{
         this.visualization = new ElementVisualization();
     }
 
-
+    // navrhovy vzor Visitor
+    // painter je v tomto pripade visitor
     @Override
     public Object paint(IPainter painter) {
         return painter.paint(this);
@@ -48,15 +54,18 @@ public class ElementUI extends CommonMetaObjectUI{
     }
 
     @Override
-    public void installUI(MetaObject obj) {
+    public void installUI(NamedElement obj) {
         if ( obj instanceof Element) {
             this.element = (Element) obj;
             obj.setUi(this);
+        } else {
+            throw new IllegalArgumentException("Parameter is not instance of Element class." +
+                    "\nobj: " + obj.toString());
         }
     }
 
     @Override
-    public void uninstallUI(MetaObject obj) {
+    public void uninstallUI(NamedElement obj) {
         if ( obj instanceof Element)
             if ( obj.getUi() == this) {
                 obj.setUi(null);

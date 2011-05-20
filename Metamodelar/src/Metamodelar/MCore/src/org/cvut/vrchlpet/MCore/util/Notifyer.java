@@ -7,16 +7,18 @@ package org.cvut.vrchlpet.MCore.util;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
 import javax.swing.event.EventListenerList;
 
 /**
+ *
+ * Trida slouzi jako spravce udalosti a posluchacu
  *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
 public class Notifyer implements IPropertyChangeObservable, PropertyChangeListener{
 
+    // notifikovani posluchacu lze vypnout
     public static final boolean DEFAULT_ENABLE_NOTIFICATION = true;
 
 
