@@ -1,18 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/*
- * StructuralFuturePanel.java
- *
- * Created on 9.4.2011, 20:39:35
- */
 package org.cvut.vrchlpet.MEditor.dialogs;
 
 /**
  *
- * @author Vrchli
+ * Napul generovany, napul implementovany panel editoru structuralFeature
+ *
+ * @author Vrchlavsky Petr
+ * @version 1.0
  */
 public class StructuralFuturePanel extends javax.swing.JPanel {
 

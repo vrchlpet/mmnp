@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.cvut.vrchlpet.MEditor.util;
 
 import java.util.ArrayList;
@@ -13,6 +10,8 @@ import org.openide.util.Exceptions;
 
 /**
  *
+ * Tovarna na property polozky v propery dokovacim okne pro StructuralFeature objekty (atributy a property)
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
@@ -21,15 +20,16 @@ public class StructuralFeatureSheetFactory {
     
     public static Sheet getSheet(StructuralFeature sf, 
             IMasterController controller, 
-            ArrayList<PropertySupport.Reflection<? extends Object>> properties) {
+            ArrayList<PropertySupport.Reflection<? extends Object>> properties,
+            String setName) {
         
         
         Sheet sheet = Sheet.createDefault();
         Sheet.Set set = Sheet.createPropertiesSet();
-        set.setName("set");
+        set.setName(setName);
         
             
-        StructuralFeatureAdapter sfa = new StructuralFeatureAdapter(sf, controller);
+        ProxyStructuralFeature sfa = new ProxyStructuralFeature(sf, controller);
             
             try {
                 PropertySupport.Reflection<Boolean> editProp = 

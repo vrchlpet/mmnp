@@ -4,7 +4,7 @@ package org.cvut.vrchlpet.MCore.visualization;
 
 /**
  *
- * Popisek cary mezi 2 elementz
+ * Popisek cary mezi 2 elementy
  *
  * @author Vrchlavsky Petr
  * @version 1.0

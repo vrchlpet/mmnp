@@ -1,19 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.cvut.vrchlpet.MEditor.nodes;
 
 import org.cvut.vrchlpet.MEditor.controller.IMasterController;
-import org.cvut.vrchlpet.MCore.core.Model;
 import org.cvut.vrchlpet.MCore.core.Relation;
 import org.cvut.vrchlpet.MCore.model.IMModel;
-import org.cvut.vrchlpet.MCore.model.MModel;
 import org.openide.nodes.Children;
 import org.openide.nodes.Node;
 
 /**
+ *
+ * Stara se o vytvoreni potomku uzlu Relations
  *
  * @author Vrchlavsky Petr
  * @version 1.0

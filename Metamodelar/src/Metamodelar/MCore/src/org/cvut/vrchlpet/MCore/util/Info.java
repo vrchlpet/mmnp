@@ -115,8 +115,6 @@ public class Info {
         eui2.getVisualization().getLabels().add(l5);
         eui2.getVisualization().getLabels().add(l6);
         ElementUI eui3 = new ElementUI(e3);
-        //BackgroundImage bi = new BackgroundImage("C:\\Users\\Vrchli\\Documents\\batikLogo.svg");
-        //eui3.getVisualization().setBackgroundImage(bi);
 
 
 

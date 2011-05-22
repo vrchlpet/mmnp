@@ -8,16 +8,18 @@ import org.cvut.vrchlpet.MCore.core.Property;
 
 /**
  *
+ * Proxy objekt property, deleguje udalosti pres controller
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
-public class PropertyAdapter {
+public class ProxyProperty {
 
 
     private Property property;
     private IMasterController controller;
 
-    public PropertyAdapter(Property property, IMasterController controller) {
+    public ProxyProperty(Property property, IMasterController controller) {
         this.property = property;
         this.controller = controller;
     }
@@ -48,6 +50,9 @@ public class PropertyAdapter {
     }
 
     public void setValue(Color value) {
+        int red = value.getRed();
+        int blue = value.getBlue();
+        int green = value.getGreen();
         controller.getPropertyManager().setValue(property, value);
     }
 

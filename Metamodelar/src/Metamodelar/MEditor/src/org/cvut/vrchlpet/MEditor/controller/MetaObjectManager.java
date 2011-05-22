@@ -1,15 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.cvut.vrchlpet.MEditor.controller;
 
-import org.cvut.vrchlpet.MEditor.controller.IMasterController;
-import org.cvut.vrchlpet.MEditor.controller.IMetaObjectManager;
+
 import org.cvut.vrchlpet.MCore.core.NamedElement;
 
 /**
+ *
+ * Manager metaobjektu
  *
  * @author Vrchlavsky Petr
  * @version 1.0
@@ -27,7 +24,7 @@ public class MetaObjectManager implements IMetaObjectManager{
     public boolean changeNamespace(NamedElement obj, String namespace) {
         
         String val = namespace.trim();
-        if ( val.length() == 0 || val.equals(""))
+        if ( val.length() == 0)
             return false;
         
         if ( controller.getMModel().getModelInfo().isNameSpaceInUse(namespace))

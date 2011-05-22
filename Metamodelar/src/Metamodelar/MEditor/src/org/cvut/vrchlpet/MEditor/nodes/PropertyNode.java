@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.cvut.vrchlpet.MEditor.nodes;
 
@@ -11,7 +7,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import org.cvut.vrchlpet.MEditor.controller.IMasterController;
-import org.cvut.vrchlpet.MEditor.util.PropertyAdapter;
+import org.cvut.vrchlpet.MEditor.util.ProxyProperty;
 import org.cvut.vrchlpet.MEditor.util.StructuralFeatureSheetFactory;
 import org.openide.nodes.Children;
 import org.openide.nodes.PropertySupport;
@@ -24,6 +20,8 @@ import org.openide.util.lookup.Lookups;
 
 
 /**
+ *
+ * Trida predstavujici skutecny uzel property
  *
  * @author Vrchlavsky Petr
  * @version 1.0
@@ -57,19 +55,26 @@ public class PropertyNode extends MAbstractNode implements PropertyChangeListene
         org.cvut.vrchlpet.MCore.core.Property property = getLookup().lookup(
                 org.cvut.vrchlpet.MCore.core.Property.class);
 
-        PropertyAdapter pa = new PropertyAdapter(property, controller);
+        ProxyProperty pa = new ProxyProperty(property, controller);
 
         PropertySupport.Reflection propRef;
+        PropertySupport.Reflection<String> propRef2;
         try {
             propRef = new PropertySupport.Reflection(pa, property.getmData().getDataClass(), "value");
-            propRef.setName(property.getName());
+            propRef.setName("Value");
+            
+
+            propRef2 = new PropertySupport.Reflection<String>(property.getmData(), String.class, "toString", null);
+            propRef2.setName("Type");
+            props.add(propRef2);
             props.add(propRef);
         } catch (NoSuchMethodException ex) {
             Exceptions.printStackTrace(ex);
         }
+
+        String setName = "set";
         
-        
-        Sheet sheet = StructuralFeatureSheetFactory.getSheet(property, controller, props);
+        Sheet sheet = StructuralFeatureSheetFactory.getSheet(property, controller, props, setName);
         return sheet;
         
         

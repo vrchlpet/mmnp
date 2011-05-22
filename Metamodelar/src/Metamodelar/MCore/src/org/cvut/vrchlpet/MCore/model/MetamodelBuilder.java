@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.cvut.vrchlpet.MCore.model;
 
@@ -73,6 +69,9 @@ public class MetamodelBuilder implements IModelBuilder{
     public boolean setSuperType(Element concrete, Element superType) {
 
 
+        if ( concrete == superType)
+            return false;
+        
         if ( superType == null) {
             concrete.setSuperElement(null);
             return true;

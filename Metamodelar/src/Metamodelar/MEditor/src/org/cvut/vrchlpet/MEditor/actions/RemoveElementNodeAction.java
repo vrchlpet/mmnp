@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package org.cvut.vrchlpet.MEditor.actions;
 
@@ -10,9 +7,10 @@ import javax.swing.AbstractAction;
 import org.cvut.vrchlpet.MEditor.controller.IMasterController;
 import org.cvut.vrchlpet.MCore.core.Element;
 import org.cvut.vrchlpet.MEditor.dialogs.DialogMessagesManager;
-import org.cvut.vrchlpet.MEditor.nodes.ElementNode;
 
 /**
+ *
+ * Akce uzlu Element pro odstraneni elementu
  *
  * @author Vrchlavsky Petr
  * @version 1.0

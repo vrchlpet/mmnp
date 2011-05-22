@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.cvut.vrchlpet.MEditor.util;
 
 import javax.swing.JOptionPane;
@@ -11,10 +8,12 @@ import org.openide.windows.WindowManager;
 
 /**
  *
+ * Proxy objekt relace, deleguje udalosti pres controller
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
-public class RelationAdapter {
+public class ProxyRelation {
     
     
     
@@ -25,7 +24,7 @@ public class RelationAdapter {
     
     
     
-    public RelationAdapter(Relation relation, IMasterController controller) {
+    public ProxyRelation(Relation relation, IMasterController controller) {
         this.relation = relation;
         this.controller = controller;
     }

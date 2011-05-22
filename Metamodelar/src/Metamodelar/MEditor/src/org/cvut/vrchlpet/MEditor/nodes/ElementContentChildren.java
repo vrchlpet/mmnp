@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package org.cvut.vrchlpet.MEditor.nodes;
 
@@ -12,6 +9,8 @@ import org.openide.nodes.Children;
 import org.openide.nodes.Node;
 
 /**
+ *
+ * Stara se o vytvoreni potomku uzlu Element
  *
  * @author Vrchlavsky Petr
  * @version 1.0

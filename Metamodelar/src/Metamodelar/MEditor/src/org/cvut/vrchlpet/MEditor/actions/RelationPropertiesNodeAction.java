@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.cvut.vrchlpet.MEditor.actions;
 
 import java.awt.event.ActionEvent;
@@ -11,6 +8,8 @@ import org.cvut.vrchlpet.MCore.core.Relation;
 import org.cvut.vrchlpet.MEditor.dialogs.RelationEditorDialog;
 
 /**
+ *
+ * Akce uzlu Relation pro vyvolani dialogu s nastavenim
  *
  * @author Vrchlavsky Petr
  * @version 1.0

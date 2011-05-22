@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package org.cvut.vrchlpet.MEditor.nodes;
 
@@ -13,7 +10,7 @@ import org.cvut.vrchlpet.MEditor.controller.IMasterController;
 import org.cvut.vrchlpet.MCore.core.Reference;
 import org.cvut.vrchlpet.MCore.core.Relation;
 import org.cvut.vrchlpet.MEditor.actions.ActionFactory;
-import org.cvut.vrchlpet.MEditor.util.ReferenceAdapter;
+import org.cvut.vrchlpet.MEditor.util.ProxyReference;
 import org.openide.nodes.Children;
 import org.openide.nodes.PropertySupport;
 import org.openide.nodes.Sheet;
@@ -21,6 +18,8 @@ import org.openide.util.ImageUtilities;
 import org.openide.util.lookup.Lookups;
 
 /**
+ *
+ * Trida predstavujici skutecny uzel reference
  *
  * @author Vrchlavsky Petr
  * @version 1.0
@@ -32,16 +31,16 @@ public class ReferenceNode extends MAbstractNode implements PropertyChangeListen
         obj.addPropertyChangeListener(this);
         this.addNodeListener(new NodeListenerKiller(obj,this));
         obj.getRelation().addPropertyChangeListener(this);
-        obj.getOpposite().getOwner().addPropertyChangeListener(this);
+        obj.getReferenceType().addPropertyChangeListener(this);
         this.addNodeListener( new NodeListenerKiller(obj.getRelation(), this));
-        this.addNodeListener( new NodeListenerKiller(obj.getOpposite().getOwner(), this));
+        this.addNodeListener( new NodeListenerKiller(obj.getReferenceType(), this));
         ActionFactory.addActions(obj, this);
         setDisplayName();
     }
 
     private void setDisplayName() {
         Reference ref = getLookup().lookup(Reference.class);
-        setDisplayName("(" + ref.getId() + ")" + ref.getReferenceType().getNameSpace() + ((ref.getOpposite()==null)?"":": " + ref.getOpposite().getId()));
+        setDisplayName("(refId: " + ref.getId() + ((ref.getOpposite()==null)?")":"; oppositeID: " + ref.getOpposite().getId() + ")   " + ref.getReferenceType().getNameSpace()));
     }
     
     
@@ -68,7 +67,7 @@ public class ReferenceNode extends MAbstractNode implements PropertyChangeListen
         set.setName("set");
 
         Reference ref = getLookup().lookup(Reference.class);
-        ReferenceAdapter ra = new ReferenceAdapter(ref, controller);
+        ProxyReference ra = new ProxyReference(ref, controller);
 
 
 

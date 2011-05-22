@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.cvut.vrchlpet.MEditor.nodes;
 
@@ -11,7 +7,7 @@ import java.beans.PropertyChangeListener;
 import org.cvut.vrchlpet.MEditor.controller.IMasterController;
 import org.cvut.vrchlpet.MCore.core.Relation;
 import org.cvut.vrchlpet.MEditor.actions.ActionFactory;
-import org.cvut.vrchlpet.MEditor.util.RelationAdapter;
+import org.cvut.vrchlpet.MEditor.util.ProxyRelation;
 import org.openide.nodes.Children;
 import org.openide.nodes.PropertySupport;
 import org.openide.nodes.Sheet;
@@ -20,6 +16,8 @@ import org.openide.util.ImageUtilities;
 import org.openide.util.lookup.Lookups;
 
 /**
+ *
+ * Trida predstavujici skutecny uzel Relation
  *
  * @author Vrchlavsky Petr
  * @version 1.0
@@ -51,7 +49,7 @@ public class RelationNode extends MAbstractNode implements PropertyChangeListene
         Sheet.Set set = Sheet.createPropertiesSet();
         set.setName("set");
 
-        RelationAdapter relA = new RelationAdapter(getLookup().lookup(Relation.class),controller);
+        ProxyRelation relA = new ProxyRelation(getLookup().lookup(Relation.class),controller);
 
         PropertySupport.Reflection<Boolean> property1 = null;
         PropertySupport.Reflection<String> property2 = null;

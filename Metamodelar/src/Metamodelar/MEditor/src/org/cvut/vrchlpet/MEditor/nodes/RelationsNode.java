@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.cvut.vrchlpet.MEditor.nodes;
 
@@ -16,6 +12,8 @@ import org.openide.util.lookup.Lookups;
 
 /**
  *
+ * Trida predstavujici skutecny uzel Relations
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
@@ -27,7 +25,7 @@ public class RelationsNode extends MAbstractNode implements PropertyChangeListen
     public RelationsNode(IMModel model, IMasterController controller) {
         super(new RelationChildren(model, controller), Lookups.singleton(model), controller);
         setDisplayName(DEFAULT_RELATIONS_NODE_NAME);
-        addAction(new AddRelationNodeAction(controller));
+        addAction(new AddRelationNodeAction(this));
         model.getModel().addPropertyChangeListener(this);
         this.addNodeListener(new NodeListenerKiller(model.getModel(), this));
     }

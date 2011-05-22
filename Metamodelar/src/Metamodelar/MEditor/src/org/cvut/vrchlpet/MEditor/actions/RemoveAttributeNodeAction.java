@@ -6,11 +6,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import org.cvut.vrchlpet.MEditor.controller.IMasterController;
 import org.cvut.vrchlpet.MCore.core.Attribute;
-import org.cvut.vrchlpet.MCore.core.Element;
-import org.cvut.vrchlpet.MCore.core.Reference;
 import org.cvut.vrchlpet.MEditor.dialogs.DialogMessagesManager;
 
 /**
+ *
+ * Akce uzlu Attribute pro mazani atributu
  *
  * @author Vrchlavsky Petr
  * @version 1.0

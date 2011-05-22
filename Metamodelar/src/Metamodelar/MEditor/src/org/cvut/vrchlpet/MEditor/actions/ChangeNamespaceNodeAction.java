@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.cvut.vrchlpet.MEditor.actions;
 
 import java.awt.event.ActionEvent;
@@ -13,6 +10,8 @@ import org.cvut.vrchlpet.MEditor.dialogs.DialogMessagesManager;
 import org.openide.windows.WindowManager;
 
 /**
+ *
+ * Akce uzlu pro zmenu jmeneho prostoru metamodelu
  *
  * @author Vrchlavsky Petr
  * @version 1.0
@@ -30,10 +29,10 @@ public class ChangeNamespaceNodeAction extends AbstractAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String s = JOptionPane.showInputDialog(WindowManager.getDefault().getMainWindow(), "Type int new namespace");
+        String s = JOptionPane.showInputDialog(WindowManager.getDefault().getMainWindow(), "Type int a new namespace");
         if ( s != null) {
             if ( !controller.getMetaObjectManager().changeNamespace(obj, s)) {
-                DialogMessagesManager.showErrorDialog("Namespace " + s + " is already used.");
+                DialogMessagesManager.showErrorDialog("Wrong input!");
             }
         }
         

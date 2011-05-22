@@ -54,15 +54,13 @@ public class Element extends ReferenceableObject{
     public boolean removeAttribute(Attribute at) {
         boolean b = attributes.remove(at);
         if ( b)
-            at.removePropertyChangeListener(this);
-        firePropertyChange(ATTRIBUTE_REMOVED, at, attributes);
+            firePropertyChange(ATTRIBUTE_REMOVED, at, attributes);
         return b;
     }
 
     public Attribute createAttribute(String name) {
         Attribute at = new Attribute(this);
         at.setName(name);
-        at.addPropertyChangeListener(this);
         attributes.add(at);
         firePropertyChange(ATTRIBUTE_ADDED, attributes, at);
         return at;
@@ -75,6 +73,9 @@ public class Element extends ReferenceableObject{
 
     public boolean isDerivedFrom(Element el) {
 
+        if ( el == this)
+            return true;
+        
         Element tmp = this;
 
         while( (tmp = tmp.getSuperElement()) != null) {
@@ -85,7 +86,7 @@ public class Element extends ReferenceableObject{
         return false;
     }
 
-    public List<Element> getAllSuperElements() {
+    public ArrayList<Element> getAllSuperElements() {
         ArrayList<Element> superElements = new ArrayList<Element>();
 
         Element el = this;

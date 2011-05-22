@@ -3,12 +3,12 @@
 package org.cvut.vrchlpet.MEditor.controller;
 
 
-import org.cvut.vrchlpet.MEditor.controller.IMasterController;
-import org.cvut.vrchlpet.MEditor.controller.IModelManager;
 import org.cvut.vrchlpet.MCore.core.Element;
 import org.cvut.vrchlpet.MCore.core.Relation;
 
 /**
+ *
+ * Manager modelu
  *
  * @author Vrchlavsky Petr
  * @version 1.0

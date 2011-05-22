@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.cvut.vrchlpet.MEditor.nodes;
 
@@ -18,6 +14,8 @@ import org.openide.util.ImageUtilities;
 import org.openide.util.lookup.Lookups;
 
 /**
+ *
+ * Trida predstavujici skutecny uzel References
  *
  * @author Vrchlavsky Petr
  * @version 1.0

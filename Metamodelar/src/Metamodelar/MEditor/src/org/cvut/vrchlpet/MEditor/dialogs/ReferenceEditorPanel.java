@@ -1,13 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/*
- * ReferenceEditorPanel.java
- *
- * Created on 8.4.2011, 15:36:00
- */
 
 package org.cvut.vrchlpet.MEditor.dialogs;
 
@@ -25,7 +16,10 @@ import org.cvut.vrchlpet.MCore.core.Relation;
 
 /**
  *
- * @author Vrchli
+ * Napul generovany, napul implementovany panel editoru reference
+ *
+ * @author Vrchlavsky Petr
+ * @version 1.0
  */
 public class ReferenceEditorPanel extends javax.swing.JPanel implements PropertyChangeListener, ActionListener, ItemListener{
 
@@ -120,8 +114,8 @@ public class ReferenceEditorPanel extends javax.swing.JPanel implements Property
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txLowerBound, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                    .addComponent(txUpperBound))
+                    .addComponent(txLowerBound, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+                    .addComponent(txUpperBound, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -152,7 +146,7 @@ public class ReferenceEditorPanel extends javax.swing.JPanel implements Property
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(chbSource)
                     .addComponent(chbVisible))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,7 +165,7 @@ public class ReferenceEditorPanel extends javax.swing.JPanel implements Property
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(listRelation, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,13 +188,13 @@ public class ReferenceEditorPanel extends javax.swing.JPanel implements Property
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbReferenceName, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))
+                        .addComponent(lbReferenceName, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btOk)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                        .addComponent(btCancel))
+                        .addComponent(btCancel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                        .addComponent(btOk))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -219,9 +213,9 @@ public class ReferenceEditorPanel extends javax.swing.JPanel implements Property
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btOk)
-                    .addComponent(btCancel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btCancel)
+                    .addComponent(btOk))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

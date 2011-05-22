@@ -37,7 +37,6 @@ public class Attribute extends StructuralFeature{
         if ( properties.remove(p)) {
             b = true;
             Property old = p;
-            p.removePropertyChangeListener(this);
             firePropertyChange(PROPERTY_REMOVED, old, this.properties);
         }
 
@@ -47,7 +46,6 @@ public class Attribute extends StructuralFeature{
     public Property createProperty(MData data, String name) {
         Property property = new Property(data);
         property.setName(name);
-        property.addPropertyChangeListener(this);
         properties.add(property);
         firePropertyChange(PROPERTY_ADDED, this.properties, property);
         return property;

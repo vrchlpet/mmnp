@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.cvut.vrchlpet.MEditor.actions;
 
@@ -18,9 +14,11 @@ import org.netbeans.api.visual.widget.ConnectionWidget;
 import org.netbeans.api.visual.widget.LabelWidget;
 import org.netbeans.api.visual.widget.LayerWidget;
 import org.netbeans.api.visual.widget.Scene;
-import org.netbeans.api.visual.widget.Widget;
 
 /**
+ *
+ * Akce uzlu Relation pro zobrazeni grafiky
+ *
  *
  * @author Vrchlavsky Petr
  * @version 1.0

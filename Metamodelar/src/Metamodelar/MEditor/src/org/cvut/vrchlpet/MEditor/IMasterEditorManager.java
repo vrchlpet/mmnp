@@ -2,13 +2,12 @@
 
 package org.cvut.vrchlpet.MEditor;
 
-import java.awt.event.ActionListener;
 import org.cvut.vrchlpet.MEditor.controller.IMasterController;
-import org.cvut.vrchlpet.MCore.model.IMModel;
-import org.cvut.vrchlpet.MCore.model.MModel;
 import org.openide.windows.TopComponent;
 
 /**
+ *
+ * Rozhrani view componenty z MVC
  *
  * @author Vrchlavsky Petr
  * @version 1.0
@@ -18,5 +17,4 @@ public interface IMasterEditorManager {
     public TopComponent getTopComponent();
     public void setController(IMasterController controller);
     public IMasterController getController();
-    public IMModel getModel();
 }

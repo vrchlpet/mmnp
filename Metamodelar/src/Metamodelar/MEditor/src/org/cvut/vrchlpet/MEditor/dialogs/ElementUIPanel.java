@@ -1,13 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/*
- * ElementUIPanel.java
- *
- * Created on 16.4.2011, 11:44:24
- */
 
 package org.cvut.vrchlpet.MEditor.dialogs;
 
@@ -36,7 +27,10 @@ import org.cvut.vrchlpet.MCore.visualization.ui.ElementUI;
 
 /**
  *
- * @author Vrchli
+ * Napul generovany, napul implementovany panel dialogu pro editaci grafiky elementu
+ *
+ * @author Vrchlavsky Petr
+ * @version 1.0
  */
 public class ElementUIPanel extends javax.swing.JPanel implements ActionListener, ItemListener{
 

@@ -2,10 +2,12 @@
 
 package org.cvut.vrchlpet.MEditor.controller;
 
-import org.cvut.vrchlpet.MCore.core.Relation;
+
 import org.cvut.vrchlpet.MCore.model.IMModel;
 
 /**
+ *
+ * komponenta Controller z MVC vzoru
  *
  * @author Vrchlavsky Petr
  * @version 1.0

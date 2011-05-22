@@ -7,12 +7,13 @@ import java.util.ArrayList;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import org.cvut.vrchlpet.MEditor.controller.IMasterController;
-import org.cvut.vrchlpet.MEditor.actions.ActionFactory;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.util.Lookup;
 
 /**
+ *
+ * Abstraktni uzel pro vsechny ostatni, drzi si odkaz na kontroller a sve potomky
  *
  * @author Vrchlavsky Petr
  * @version 1.0

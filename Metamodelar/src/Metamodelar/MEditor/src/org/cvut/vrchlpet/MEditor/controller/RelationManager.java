@@ -1,15 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.cvut.vrchlpet.MEditor.controller;
 
-import org.cvut.vrchlpet.MEditor.controller.IMasterController;
-import org.cvut.vrchlpet.MEditor.controller.IRelationManager;
+
 import org.cvut.vrchlpet.MCore.core.Relation;
 
 /**
+ *
+ * Manager relace
  *
  * @author Vrchlavsky Petr
  * @version 1.0
@@ -30,6 +27,21 @@ public class RelationManager implements IRelationManager{
     @Override
     public void setContainer(Relation rel, boolean b) {
         rel.setContainer(b);
+    }
+
+    @Override
+    public boolean createRelation(String namespace) {
+        return (controller.getMModel().getBuilder().createRelation(namespace) != null);
+    }
+
+    @Override
+    public boolean removeRelation(String namespace) {
+        Relation rel = controller.getMModel().getModelInfo().findRelation(namespace);
+        
+        if ( rel == null)
+            return false;
+        
+        return controller.getMModel().getBuilder().removeRelation(rel);
     }
 
 }

@@ -1,13 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * ElementEditorPanel.java
- *
- * Created on 15.4.2011, 13:01:16
- */
 
 package org.cvut.vrchlpet.MEditor.dialogs;
 
@@ -26,7 +16,10 @@ import org.cvut.vrchlpet.MCore.core.Reference;
 
 /**
  *
- * @author Vrchli
+ * Napul generovany, napul implementovany panel editoru elementu
+ *
+ * @author Vrchlavsky Petr
+ * @version 1.0
  */
 public class ElementEditorPanel extends javax.swing.JPanel implements PropertyChangeListener, ActionListener, ItemListener{
 

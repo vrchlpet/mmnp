@@ -68,6 +68,9 @@ public class Serializer {
     private static final String METAMODEL_DATA = "metamodel.data";
 
 
+    private Serializer() {}
+
+
     // singleton
     public static Serializer createSerializer() {
         if (instance == null) {
@@ -189,6 +192,7 @@ public class Serializer {
                             BufferedImage img = ImageLoader.loadImage(is);
                             BackgroundImage bi = new BackgroundImage();
                             bi.setImage(img);
+                            bi.setImgName(eimage.getAttribute("name"));
                             eui.getVisualization().setBackgroundImage(bi);
                             is.close();
                         }
@@ -315,6 +319,7 @@ public class Serializer {
                                 Reference r = refs.get(Integer.parseInt(eR.getAttribute("id")));
                                 r.getOpposite().setLowerBound(Integer.parseInt(eR.getAttribute("lowerBound")));
                                 r.getOpposite().setUpperBound(Integer.parseInt(eR.getAttribute("upperBound")));
+                                r.getOpposite().setVisible(eR.getAttribute("visible").equals("true")?true:false);
                                 continue x;
                             }
 
@@ -323,7 +328,10 @@ public class Serializer {
                             ref = b.createConnection(el, elTarget, rel);
                             ref.setLowerBound(Integer.parseInt(eR.getAttribute("lowerBound")));
                             ref.setUpperBound(Integer.parseInt(eR.getAttribute("upperBound")));
-                            ref.setSource(eR.getAttribute("source").equals("true")?true:false);
+                            boolean bb = eR.getAttribute("source").equals("true")?true:false;
+                            ref.setSource(bb);
+                            ref.getOpposite().setSource(!bb);
+                            ref.setVisible(eR.getAttribute("visible").equals("true")?true:false);
                             refs.put(Integer.parseInt(eR.getAttribute("oppositeId")), ref);
                         }
                     }/* references */
@@ -472,9 +480,12 @@ public class Serializer {
             if (bc != null) {
                 Element backgroundColor = doc.createElement("backgroundColor");
                 eeui.appendChild(backgroundColor);
-                backgroundColor.setAttribute("red", "" + bc.getColor().getRed());
-                backgroundColor.setAttribute("green", "" + bc.getColor().getGreen());
-                backgroundColor.setAttribute("blue", "" + bc.getColor().getBlue());
+                int r = bc.getColor().getRed();
+                int g = bc.getColor().getGreen();
+                int b = bc.getColor().getBlue();
+                backgroundColor.setAttribute("red", "" + r);
+                backgroundColor.setAttribute("green", "" + g);
+                backgroundColor.setAttribute("blue", "" + b);
             }
             MBorder border = eui.getVisualization().getBorder();
             if (border != null) {
@@ -557,8 +568,8 @@ public class Serializer {
                 break;
             case COLOR:
                 value.setAttribute("red", "" + ((Color) prop.getValue()).getRed());
-                value.setAttribute("green", "" + ((Color) prop.getValue()).getBlue());
-                value.setAttribute("blue", "" + ((Color) prop.getValue()).getGreen());
+                value.setAttribute("green", "" + ((Color) prop.getValue()).getGreen());
+                value.setAttribute("blue", "" + ((Color) prop.getValue()).getBlue());
                 break;
             case DOUBLE:
                 value.setAttribute("value", "" + ((Double) prop.getValue()));

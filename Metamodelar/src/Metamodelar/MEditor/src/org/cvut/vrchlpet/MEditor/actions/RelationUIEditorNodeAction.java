@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.cvut.vrchlpet.MEditor.actions;
 
 import java.awt.event.ActionEvent;
@@ -10,6 +7,8 @@ import org.cvut.vrchlpet.MCore.core.Relation;
 import org.cvut.vrchlpet.MEditor.dialogs.RelationUIEditor;
 
 /**
+ *
+ * Akce uzlu Relation pro nastaveni grafiky
  *
  * @author Vrchlavsky Petr
  * @version 1.0

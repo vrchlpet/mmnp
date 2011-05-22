@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.cvut.vrchlpet.MEditor.nodes;
 
@@ -9,12 +5,11 @@ import java.awt.Image;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import org.cvut.vrchlpet.MEditor.controller.IMasterController;
-import org.cvut.vrchlpet.MCore.core.Element;
 import org.cvut.vrchlpet.MCore.core.NamedElement;
 import org.cvut.vrchlpet.MCore.core.Model;
 import org.cvut.vrchlpet.MCore.model.IMModel;
 import org.cvut.vrchlpet.MEditor.actions.ActionFactory;
-import org.cvut.vrchlpet.MEditor.util.ModelAdapter;
+import org.cvut.vrchlpet.MEditor.util.ProxyAdapter;
 import org.openide.nodes.PropertySupport;
 import org.openide.nodes.Sheet;
 import org.openide.util.Exceptions;
@@ -23,13 +18,14 @@ import org.openide.util.lookup.Lookups;
 
 /**
  *
+ * Trida predstavujici skutecny uzel konkretniho modelu
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
 public class ModelNode extends MAbstractNode implements PropertyChangeListener{
 
     public ModelNode(IMModel model, IMasterController controller) {
-        //super(new ParameterChildren(attribute), Lookups.singleton(attribute));
         super(new ModelContentChildren(model, controller), Lookups.singleton(model), controller);
         setDisplayName(model.getModel().getNameSpace());
         ActionFactory.addActions(model.getModel(), this);
@@ -53,7 +49,7 @@ public class ModelNode extends MAbstractNode implements PropertyChangeListener{
         set.setName("set");
 
         Model model = getLookup().lookup(IMModel.class).getModel();
-        ModelAdapter ma = new ModelAdapter(controller, model);
+        ProxyAdapter ma = new ProxyAdapter(controller, model);
         
         PropertySupport.Reflection<String> property3 = null;
         PropertySupport.Reflection<String> property2 = null;

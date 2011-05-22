@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package org.cvut.vrchlpet.MEditor.nodes;
 
@@ -17,6 +14,8 @@ import org.openide.util.ImageUtilities;
 import org.openide.util.lookup.Lookups;
 
 /**
+ *
+ * Trida predstavujici skutecny uzel Attribute
  *
  * @author Vrchlavsky Petr
  * @version 1.0
@@ -45,7 +44,11 @@ public class AttributeNode extends MAbstractNode implements PropertyChangeListen
     @Override
     protected Sheet createSheet() {
         Attribute at = getLookup().lookup(Attribute.class);
-        return StructuralFeatureSheetFactory.getSheet(at, controller, null);
+
+        String setName = "set";
+        Sheet s = StructuralFeatureSheetFactory.getSheet(at, controller, null, setName);
+
+        return s;
     }
 
     @Override

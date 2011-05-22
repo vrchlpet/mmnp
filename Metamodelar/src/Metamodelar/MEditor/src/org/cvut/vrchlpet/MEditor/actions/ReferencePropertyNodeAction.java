@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package org.cvut.vrchlpet.MEditor.actions;
 
@@ -12,6 +9,8 @@ import org.cvut.vrchlpet.MCore.core.Reference;
 import org.cvut.vrchlpet.MEditor.dialogs.ReferenceEditorDialog;
 
 /**
+ *
+ * Akce uzlu Reference pro vyvolani dialogu s nastavenim
  *
  * @author Vrchlavsky Petr
  * @version 1.0

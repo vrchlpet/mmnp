@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.cvut.vrchlpet.MEditor;
 
 import java.io.File;
@@ -14,40 +11,44 @@ import org.cvut.vrchlpet.MEditor.actions.SaveSupport;
 import org.cvut.vrchlpet.MEditor.nodes.GeneralModelNode;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
-//import org.openide.util.ImageUtilities;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.ExplorerUtils;
 import org.openide.explorer.view.BeanTreeView;
 import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
-import org.openide.util.lookup.Lookups;
 import org.openide.util.lookup.ProxyLookup;
 import org.openide.windows.CloneableTopComponent;
 
 /**
- * Top component which displays something.
+ * Generovana trida predstavujici ediotr metamodelovani
  */
 @ConvertAsProperties(dtd = "-//org.cvut.vrchlpet.MEditor//MEditor//EN",
 autostore = false)
 public final class MEditorTopComponent extends CloneableTopComponent implements ExplorerManager.Provider{
 
     private static MEditorTopComponent instance;
-    /** path to the icon used by the component and its open action */
-//    static final String ICON_PATH = "SET/PATH/TO/ICON/HERE";
+
     private static final String PREFERRED_ID = "MEditorTopComponent";
 
+
+    // implementace fukce save
     private SaveSupport saveImpl;
+
+    // dynamicky se menici mnozina funkcionality spjata s editorem
     private InstanceContent content;
 
+    // manager, ktery se stara o rezii stromove struktury metamodelu, obstarava veci jako okno properties atd...
     private final ExplorerManager mgr = new ExplorerManager();
 
+
+    // tento konstruktor by se nemel nikdy zavolat
     public MEditorTopComponent() {
         initComponents();
         associateLookup (ExplorerUtils.createLookup(mgr, getActionMap()));
         IMModel model = Info.createRandomModel();
         IMasterController controller = new MasterController(model, "" + File.pathSeparatorChar);
-        IMasterEditorManager manager = new MasterEditorManager(model, controller);
+        IMasterEditorManager manager = new MasterEditorManager(controller);
         mgr.setRootContext(new GeneralModelNode(manager));
 
     }
@@ -58,8 +59,11 @@ public final class MEditorTopComponent extends CloneableTopComponent implements 
 
         saveImpl = new SaveSupport(manager);
         content.add(saveImpl);
-        //associateLookup (ExplorerUtils.createLookup(mgr, getActionMap()));
+
+        // prirazeni lookupu k teto komponente
         associateLookup (new ProxyLookup(ExplorerUtils.createLookup(mgr, getActionMap()), new AbstractLookup(content)));
+
+        // nastaveni korenoveho uzlu stromove struktury metamodelu
         mgr.setRootContext(new GeneralModelNode(manager));
     }
 

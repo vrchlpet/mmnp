@@ -1,15 +1,14 @@
 package org.cvut.vrchlpet.MEditor.controller;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 
 
 import org.cvut.vrchlpet.MCore.model.IMModel;
 
 /**
+ *
+ * Rozhrani komponenty Controller z MVC vzoru
  *
  * @author Vrchlavsky Petr
  * @version 1.0

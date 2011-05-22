@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.cvut.vrchlpet.MEditor.nodes;
 
@@ -18,6 +14,8 @@ import org.openide.util.ImageUtilities;
 
 /**
  *
+ * Trida predstavujici skutecny uzel Elements
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
@@ -30,7 +28,7 @@ public class ElementsNode extends MAbstractNode  implements PropertyChangeListen
         setDisplayName(DEFAULT_ELEMENTS_NODE_NAME);
         model.getModel().addPropertyChangeListener(this);
         this.addNodeListener(new NodeListenerKiller(model.getModel(), this));
-        addAction(new AddElementNodeAction(controller));
+        addAction(new AddElementNodeAction(this));
     }
 
     @Override

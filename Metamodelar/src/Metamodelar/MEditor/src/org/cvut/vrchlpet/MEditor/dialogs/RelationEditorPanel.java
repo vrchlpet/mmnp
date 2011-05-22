@@ -1,13 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/*
- * RelationEditorPanel.java
- *
- * Created on 27.4.2011, 22:21:32
- */
 package org.cvut.vrchlpet.MEditor.dialogs;
 
 import java.awt.event.ActionEvent;
@@ -21,7 +12,10 @@ import org.cvut.vrchlpet.MCore.core.Relation;
 
 /**
  *
- * @author Vrchli
+ * Napul generovany, napul implementovany panel editoru relace
+ *
+ * @author Vrchlavsky Petr
+ * @version 1.0
  */
 public class RelationEditorPanel extends javax.swing.JPanel implements ActionListener, PropertyChangeListener{
 

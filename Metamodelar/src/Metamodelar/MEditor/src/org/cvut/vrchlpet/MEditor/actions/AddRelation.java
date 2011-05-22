@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package org.cvut.vrchlpet.MEditor.actions;
 
@@ -11,6 +8,8 @@ import org.cvut.vrchlpet.MEditor.dialogs.AddRelationDialog;
 import org.cvut.vrchlpet.MEditor.dialogs.DialogMessagesManager;
 
 /**
+ *
+ * Obsluha akce tlacitka add v dialogu pro pridani nove relace
  *
  * @author Vrchlavsky Petr
  * @version 1.0
@@ -29,7 +28,8 @@ public class AddRelation implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         String name = dialog.getRelationName();
 
-        if ( name.length() == 0 || name.equals("")) {
+        name = name.trim();
+        if ( name.length() == 0) {
             DialogMessagesManager.showErrorDialog("Bad input data: " + name);
         } else {
             if ( dialog.getController().getModelManager().addRelation(name)) {

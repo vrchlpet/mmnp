@@ -22,14 +22,14 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="1"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lbReferenceName" pref="104" max="32767" attributes="0"/>
+                      <Component id="lbReferenceName" pref="111" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jPanel3" alignment="0" max="32767" attributes="1"/>
                   <Component id="jPanel2" alignment="0" max="32767" attributes="1"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="btOk" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="50" max="32767" attributes="0"/>
                       <Component id="btCancel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="57" max="32767" attributes="0"/>
+                      <Component id="btOk" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
               </Group>
@@ -53,10 +53,10 @@
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btOk" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btCancel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btOk" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="16" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -98,8 +98,8 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="txLowerBound" pref="59" max="32767" attributes="1"/>
-                      <Component id="txUpperBound" alignment="1" max="32767" attributes="1"/>
+                      <Component id="txLowerBound" pref="66" max="32767" attributes="1"/>
+                      <Component id="txUpperBound" alignment="1" pref="66" max="32767" attributes="1"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -176,7 +176,7 @@
                       <Component id="chbSource" min="-2" max="-2" attributes="0"/>
                       <Component id="chbVisible" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="85" max="32767" attributes="0"/>
+                  <EmptySpace pref="92" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -224,7 +224,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="listRelation" min="-2" pref="117" max="-2" attributes="0"/>
-                  <EmptySpace pref="21" max="32767" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

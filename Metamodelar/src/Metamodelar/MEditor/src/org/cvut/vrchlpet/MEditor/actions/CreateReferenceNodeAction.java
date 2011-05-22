@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.cvut.vrchlpet.MEditor.actions;
 
@@ -11,6 +7,8 @@ import org.cvut.vrchlpet.MEditor.controller.IMasterController;
 import org.cvut.vrchlpet.MEditor.dialogs.CreateReferenceDialog;
 
 /**
+ *
+ * Akce uzlu References pro vytvoreni nove reference
  *
  * @author Vrchlavsky Petr
  * @version 1.0

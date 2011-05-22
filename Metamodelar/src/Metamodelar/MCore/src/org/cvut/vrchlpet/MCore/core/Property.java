@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.cvut.vrchlpet.MCore.core;
 
@@ -14,6 +10,9 @@ package org.cvut.vrchlpet.MCore.core;
  */
 public class Property extends StructuralFeature{
 
+    public static final MData DEFAULT_TYEP = MData.STRING;
+    
+    
     // datovy typ
     private MData mData;
 
@@ -22,13 +21,13 @@ public class Property extends StructuralFeature{
 
 
     public Property() {
-        this.mData = null;
-        this.value = null;
+        this.mData = DEFAULT_TYEP;
+        this.value = mData.getDefault();
     }
 
     public Property(MData mData) {
-        this();
         this.mData = mData;
+        this.value = mData.getDefault();
     }
 
 
@@ -46,6 +45,11 @@ public class Property extends StructuralFeature{
         MData old = this.mData;
         this.mData = mData;
         firePropertyChange("mData", old, this.mData);
+        
+        
+        if ( !mData.getClass().isInstance(value))
+            setValue(mData.getDefault());
+        
     }
 
     /**

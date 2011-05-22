@@ -1,18 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.cvut.vrchlpet.MEditor.controller;
 
-import org.cvut.vrchlpet.MEditor.controller.IMasterController;
-import org.cvut.vrchlpet.MEditor.controller.IElementManager;
+
 import org.cvut.vrchlpet.MCore.core.Attribute;
 import org.cvut.vrchlpet.MCore.core.Element;
 import org.cvut.vrchlpet.MCore.core.Reference;
 import org.cvut.vrchlpet.MCore.core.Relation;
 
 /**
+ *
+ * Manager elementu
  *
  * @author Vrchlavsky Petr
  * @version 1.0
@@ -54,6 +51,10 @@ public class ElementManager implements IElementManager{
     @Override
     public Reference makeConnection(Element source, Element target, String relNameSpace) {
         Relation rel = controller.getMModel().getModelInfo().findRelation(relNameSpace);
+        
+        if ( rel == null)
+            return null;
+        
         return controller.getMModel().getBuilder().createConnection(source, target, rel);
     }
 

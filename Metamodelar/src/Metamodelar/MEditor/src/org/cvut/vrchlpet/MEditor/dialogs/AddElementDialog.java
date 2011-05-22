@@ -14,6 +14,7 @@ import org.cvut.vrchlpet.MEditor.controller.IMasterController;
 import org.cvut.vrchlpet.MEditor.actions.AddElement;
 
 /**
+ * Dialog pro pridani elementu
  *
  * @author Vrchlavsky Petr
  * @version 1.0

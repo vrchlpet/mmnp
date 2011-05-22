@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.cvut.vrchlpet.MEditor.actions;
 
 import java.awt.event.ActionEvent;
@@ -12,6 +9,8 @@ import org.cvut.vrchlpet.MCore.core.NamedElement;
 import org.openide.windows.WindowManager;
 
 /**
+ *
+ * Akce uzlu pro zmenu popisu metaobjektu
  *
  * @author Vrchlavsky Petr
  * @version 1.0

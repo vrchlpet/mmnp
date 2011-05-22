@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package org.cvut.vrchlpet.MEditor.actions;
 
@@ -9,12 +6,14 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 import org.cvut.vrchlpet.MCore.util.Serializer;
 import org.cvut.vrchlpet.MEditor.IMasterEditorManager;
-import org.cvut.vrchlpet.MEditor.controller.IMasterController;
 import org.openide.cookies.SaveCookie;
 
 /**
  *
- * @author Vrchli
+ * Implementace save podpory
+ *
+ * @author Vrchlavsky Petr
+ * @version 1.0
  */
 public class SaveSupport implements SaveCookie{
 
@@ -28,13 +27,13 @@ public class SaveSupport implements SaveCookie{
     @Override
     public void save() throws IOException {
         try {
-            Serializer.createSerializer().serialize(mem.getModel(), mem.getController().getModelPath());
+            Serializer.createSerializer().serialize(mem.getController().getMModel(), mem.getController().getModelPath());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
             return;
         }
 
-        JOptionPane.showMessageDialog(null, "Model " + mem.getModel().getModel().getNameSpace() + " has been saved.");
+        JOptionPane.showMessageDialog(null, "Model " + mem.getController().getMModel().getModel().getNameSpace() + " has been saved.");
     }
 
 }

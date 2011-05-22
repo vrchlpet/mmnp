@@ -1,11 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package org.cvut.vrchlpet.MProject;
 
-import java.io.File;
+
 import java.io.IOException;
 import org.netbeans.api.project.Project;
 import org.netbeans.spi.project.ProjectFactory;

@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.cvut.vrchlpet.MEditor.util;
 
 import org.cvut.vrchlpet.MEditor.controller.IMasterController;
@@ -9,10 +6,12 @@ import org.cvut.vrchlpet.MCore.core.StructuralFeature;
 
 /**
  *
+ * Proxy objekt structuralFeature, deleguje udalosti pres controller
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
-public class StructuralFeatureAdapter {
+public class ProxyStructuralFeature {
     
     
     
@@ -20,7 +19,7 @@ public class StructuralFeatureAdapter {
     private IMasterController controller;
 
 
-    public StructuralFeatureAdapter(StructuralFeature feature, IMasterController controller) {
+    public ProxyStructuralFeature(StructuralFeature feature, IMasterController controller) {
         this.feature = feature;
         this.controller = controller;
     }

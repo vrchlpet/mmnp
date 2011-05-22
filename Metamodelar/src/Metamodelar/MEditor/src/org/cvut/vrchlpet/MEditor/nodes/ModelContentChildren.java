@@ -10,6 +10,8 @@ import org.openide.nodes.Node;
 
 /**
  *
+ * Stara se o vytvoreni potomku uzlu konkretniho modelu
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */

@@ -1,16 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.cvut.vrchlpet.MEditor;
 
 import org.cvut.vrchlpet.MEditor.controller.IMasterController;
-import org.cvut.vrchlpet.MCore.model.IMModel;
-import org.cvut.vrchlpet.MCore.model.MModel;
 import org.openide.windows.TopComponent;
 
 /**
+ *
+ * Implementace view komponenty z MVC
  *
  * @author Vrchlavsky Petr
  * @version 1.0
@@ -19,11 +15,9 @@ public class MasterEditorManager implements IMasterEditorManager{
 
 
     private MEditorTopComponent topComp;
-    private IMModel model;
     private IMasterController controller;
 
-    public MasterEditorManager(IMModel model, IMasterController controller) {
-        this.model = model;
+    public MasterEditorManager(IMasterController controller) {
         this.controller = controller;
     }
 
@@ -44,17 +38,4 @@ public class MasterEditorManager implements IMasterEditorManager{
     public IMasterController getController() {
         return this.controller;
     }
-
-    @Override
-    public IMModel getModel() {
-        return this.model;
-    }
-
-
-    
-
-
-
-
-
 }

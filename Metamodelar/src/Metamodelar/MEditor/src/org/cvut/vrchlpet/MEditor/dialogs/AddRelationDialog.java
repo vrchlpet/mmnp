@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package org.cvut.vrchlpet.MEditor.dialogs;
 
@@ -10,15 +7,15 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import org.cvut.vrchlpet.MEditor.controller.IMasterController;
-import org.cvut.vrchlpet.MEditor.actions.AddElement;
 import org.cvut.vrchlpet.MEditor.actions.AddRelation;
 
 /**
+ *
+ * Dialog pro pridani relace
  *
  * @author Vrchlavsky Petr
  * @version 1.0

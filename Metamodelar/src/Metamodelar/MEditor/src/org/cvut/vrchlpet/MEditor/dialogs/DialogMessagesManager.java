@@ -1,13 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package org.cvut.vrchlpet.MEditor.dialogs;
 
 import javax.swing.JOptionPane;
 
 /**
+ *
+ * Pomocna trida zobrazujici dialogove okna se zpravami
  *
  * @author Vrchlavsky Petr
  * @version 1.0

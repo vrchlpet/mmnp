@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package org.cvut.vrchlpet.MEditor.actions;
 
@@ -12,6 +9,9 @@ import org.cvut.vrchlpet.MCore.core.Relation;
 import org.cvut.vrchlpet.MEditor.dialogs.DialogMessagesManager;
 
 /**
+ *
+ * Akce uzlu Relation pro odstraneni relace
+ *
  *
  * @author Vrchlavsky Petr
  * @version 1.0

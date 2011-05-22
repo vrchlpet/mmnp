@@ -1,13 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/*
- * CreateReferencePanel.java
- *
- * Created on 14.4.2011, 16:00:05
- */
 
 package org.cvut.vrchlpet.MEditor.dialogs;
 
@@ -21,7 +12,10 @@ import org.cvut.vrchlpet.MCore.core.Relation;
 
 /**
  *
- * @author Vrchli
+ * Napul generovany, napul implementovany panel dialogu pro pridani reference
+ *
+ * @author Vrchlavsky Petr
+ * @version 1.0
  */
 public class CreateReferencePanel extends javax.swing.JPanel implements ActionListener{
 

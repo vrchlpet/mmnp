@@ -1,18 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.cvut.vrchlpet.MEditor.dialogs;
 
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import javax.swing.JPanel;
 import org.cvut.vrchlpet.MEditor.controller.IMasterController;
 import org.cvut.vrchlpet.MCore.core.Reference;
 
 /**
+ *
+ * Dialog pro editaci reference
  *
  * @author Vrchlavsky Petr
  * @version 1.0

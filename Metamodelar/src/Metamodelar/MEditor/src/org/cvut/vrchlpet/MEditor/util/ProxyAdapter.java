@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.cvut.vrchlpet.MEditor.util;
 
 import org.cvut.vrchlpet.MEditor.controller.IMasterController;
@@ -10,15 +7,17 @@ import org.cvut.vrchlpet.MEditor.dialogs.DialogMessagesManager;
 
 /**
  *
+ * Proxy wrapper pro model, deleguje udalosti na kontroler namisto primo modelu
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
-public class ModelAdapter {
+public class ProxyAdapter {
     
     private IMasterController controller;
     private Model model;
     
-    public ModelAdapter(IMasterController controller, Model model) {
+    public ProxyAdapter(IMasterController controller, Model model) {
         this.controller = controller;
         this.model = model;
     }

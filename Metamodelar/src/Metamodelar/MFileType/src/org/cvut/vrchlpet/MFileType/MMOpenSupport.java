@@ -1,14 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.cvut.vrchlpet.MFileType;
 
+import javax.swing.JOptionPane;
 import org.cvut.vrchlpet.MCore.model.IMModel;
-import org.cvut.vrchlpet.MCore.model.MModel;
 import org.cvut.vrchlpet.MEditor.IMasterEditorManager;
-import org.cvut.vrchlpet.MEditor.MEditorTopComponent;
 import org.cvut.vrchlpet.MEditor.MasterEditorManager;
 import org.cvut.vrchlpet.MEditor.controller.IMasterController;
 import org.cvut.vrchlpet.MEditor.controller.MasterController;
@@ -37,8 +32,15 @@ class MMOpenSupport extends OpenSupport implements OpenCookie, CloseCookie {
         MMDataObject dobj = (MMDataObject) entry.getDataObject();
         
         IMModel model = (dobj.getCookie(ModelData.class)).getMetamodel();
+        if ( model == null) {
+            JOptionPane.showMessageDialog(null, "Unexpected exception has occured during load process.");
+            return null;
+        }
+
+
+
         IMasterController controller = new MasterController(model, dobj.getPrimaryFile().getPath());
-        IMasterEditorManager editorManager = new MasterEditorManager(model, controller);
+        IMasterEditorManager editorManager = new MasterEditorManager(controller);
         editorManager.getTopComponent().setDisplayName(dobj.getName());
         topComp = (CloneableTopComponent)editorManager.getTopComponent();
         

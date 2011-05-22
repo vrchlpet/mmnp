@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package org.cvut.vrchlpet.MEditor.util;
 
@@ -10,10 +7,12 @@ import org.cvut.vrchlpet.MCore.core.Reference;
 
 /**
  *
+ * Proxy objekt reference, deleguje udalosti pres controller
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
-public class ReferenceAdapter {
+public class ProxyReference {
 
 
     
@@ -22,7 +21,7 @@ public class ReferenceAdapter {
     private IMasterController controller;
 
 
-    public ReferenceAdapter(Reference reference, IMasterController controller) {
+    public ProxyReference(Reference reference, IMasterController controller) {
         this.reference = reference;
         this.controller = controller;
     }

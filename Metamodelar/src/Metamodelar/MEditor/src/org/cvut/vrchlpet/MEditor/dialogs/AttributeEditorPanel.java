@@ -1,13 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/*
- * AttributeEditorPanel.java
- *
- * Created on 9.4.2011, 15:08:34
- */
+
 
 package org.cvut.vrchlpet.MEditor.dialogs;
 
@@ -25,7 +17,10 @@ import org.cvut.vrchlpet.MCore.core.Property;
 
 /**
  *
- * @author Vrchli
+ * Napul generovany, napul implementovany panel editoru atributu
+ *
+ * @author Vrchlavsky Petr
+ * @version 1.0
  */
 public class AttributeEditorPanel extends javax.swing.JPanel implements PropertyChangeListener, ActionListener{
 
@@ -236,18 +231,18 @@ public class AttributeEditorPanel extends javax.swing.JPanel implements Property
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lbAttName, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(77, 77, 77))
-                    .addComponent(btOk, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(btOk, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -370,12 +365,14 @@ public class AttributeEditorPanel extends javax.swing.JPanel implements Property
             if ( name == null)
                 return;
 
+            name = name.trim();
             if ( name.length() == 0) {
                 DialogMessagesManager.showErrorDialog("Bad input data!");
                 return;
             }
 
-            am.addProperty(attribute, name, listAvailable.getSelectedItem());
+            if ( !am.addProperty(attribute, name, listAvailable.getSelectedItem()))
+                DialogMessagesManager.showErrorDialog("Wrong input!");
 
 
         } else if ( source == btChangeName) {

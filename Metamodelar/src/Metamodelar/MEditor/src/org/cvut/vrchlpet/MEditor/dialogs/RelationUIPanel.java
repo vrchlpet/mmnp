@@ -1,13 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/*
- * RelationUIPanel.java
- *
- * Created on 16.4.2011, 21:21:05
- */
 
 package org.cvut.vrchlpet.MEditor.dialogs;
 
@@ -26,7 +17,10 @@ import org.cvut.vrchlpet.MCore.visualization.ui.RelationUI;
 
 /**
  *
- * @author Vrchli
+ * Napul generovany, napul implementovany panel editoru grafiky relace
+ *
+ * @author Vrchlavsky Petr
+ * @version 1.0
  */
 public class RelationUIPanel extends javax.swing.JPanel implements ActionListener, ItemListener{
 

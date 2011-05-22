@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.cvut.vrchlpet.MEditor.actions;
 
 import java.awt.Point;
@@ -11,7 +8,6 @@ import org.cvut.vrchlpet.MCore.core.Element;
 import org.cvut.vrchlpet.MCore.core.Reference;
 import org.cvut.vrchlpet.MCore.visualization.ui.VisualLibraryPainter;
 import org.cvut.vrchlpet.MEditor.util.SceneSupport;
-import org.netbeans.api.visual.action.ActionFactory;
 import org.netbeans.api.visual.anchor.AnchorFactory;
 import org.netbeans.api.visual.widget.ConnectionWidget;
 import org.netbeans.api.visual.widget.LayerWidget;
@@ -19,6 +15,9 @@ import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
 
 /**
+ *
+ * Akce uzlu Reference pro zobrazeni grafiky
+ *
  *
  * @author Vrchlavsky Petr
  * @version 1.0

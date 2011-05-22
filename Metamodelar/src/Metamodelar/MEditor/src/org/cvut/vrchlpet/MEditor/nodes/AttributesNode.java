@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.cvut.vrchlpet.MEditor.nodes;
 
@@ -19,6 +15,8 @@ import org.openide.util.lookup.Lookups;
 
 /**
  *
+ * Trida predstavujici skutecny uzel Attributes
+ *
  * @author Vrchlavsky Petr
  * @version 1.0
  */
@@ -29,7 +27,7 @@ public class AttributesNode extends MAbstractNode implements PropertyChangeListe
     public AttributesNode(Element el, IMasterController controller) {
         super( new AttributeChildren(el, controller), Lookups.singleton(el), controller);
         setDisplayName(ATTRIBUTES_NODE_NAME);
-        this.addAction(new AddAttributeNodeAction(controller, el));
+        this.addAction(new AddAttributeNodeAction(this));
         el.addPropertyChangeListener(this);
         this.addNodeListener(new NodeListenerKiller(el, this));
         el.getModel().addPropertyChangeListener(this);

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.cvut.vrchlpet.MEditor.dialogs;
 
@@ -15,6 +11,8 @@ import javax.swing.JPanel;
 import org.openide.windows.WindowManager;
 
 /**
+ *
+ * Abstraktni dialog, ktery je zakladem pro ostatni dialogy
  *
  * @author Vrchlavsky Petr
  * @version 1.0

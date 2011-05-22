@@ -1,22 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.cvut.vrchlpet.MEditor.actions;
 
-import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
-import javax.swing.JOptionPane;
 import org.cvut.vrchlpet.MCore.core.Attribute;
 import org.cvut.vrchlpet.MCore.core.Element;
 import org.cvut.vrchlpet.MCore.core.NamedElement;
 import org.cvut.vrchlpet.MCore.core.Reference;
 import org.cvut.vrchlpet.MCore.core.Relation;
-import org.cvut.vrchlpet.MCore.util.Info;
-import org.cvut.vrchlpet.MCore.util.Notifyer;
 import org.cvut.vrchlpet.MEditor.nodes.MAbstractNode;
 
 /**
+ *
+ * Trida, ktera slouzi k prirazeni akci k jednotlivym uzlum
  *
  * @author Vrchlavsky Petr
  * @version 1.0
@@ -55,32 +49,9 @@ public class ActionFactory {
     }
     
     public static void addActions(Attribute at, MAbstractNode node) {
-        node.addAction(new AttributePropertyNodeAction(node.getController(), at));
+        node.addAction(new AttributePropertyNodeAction(node));
         node.addAction(new RemoveAttributeNodeAction(at, node.getController()));
         
     }
     
-    
-    
-    
-    
-    
-    
-}
-
-
-
-class TestAction extends AbstractAction {
-
-    public TestAction() {
-        putValue(NAME, "test");
-
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-        Info.showMsgDialog("listeners: " + Notifyer.count);
-    }
-
 }
